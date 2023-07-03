@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="800.0" style="-fx-background-color: #F6F1F1;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane layoutX="15.0" layoutY="15.0" prefHeight="401.0" prefWidth="516.0" style="-fx-background-color: #AFD3E2;">
+         <children>
+            <Label layoutX="30.0" layoutY="76.0" text="Status" />
+            <Label layoutX="101.0" layoutY="76.0" text="?" />
+            <ComboBox layoutX="340.0" layoutY="72.0" prefWidth="150.0" promptText="PORT SEÇİNİZ" />
+            <Button layoutX="238.0" layoutY="72.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="BAĞLAN" />
+            <JFXTextArea layoutX="26.0" layoutY="112.0" />
+            <TextField layoutX="26.0" layoutY="318.0" prefHeight="25.0" prefWidth="374.0" />
+            <Pane layoutX="1.0" prefHeight="37.0" prefWidth="516.0" style="-fx-background-color: #19A7CE;">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" prefHeight="32.0" prefWidth="157.0" text="CONNECTION">
+                     <font>
+                        <Font name="Source Code Pro Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button layoutX="419.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="GÖNDER" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="541.0" layoutY="14.0" prefHeight="401.0" prefWidth="248.0" style="-fx-background-color: #AFD3E2;">
+         <children>
+            <Pane prefHeight="37.0" prefWidth="248.0" style="-fx-background-color: #19A7CE;">
+               <children>
+                  <Label layoutX="14.0" layoutY="5.0" prefHeight="32.0" prefWidth="157.0" text="KOMUTLAR">
+                     <font>
+                        <Font name="Source Code Pro Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</Pane>
