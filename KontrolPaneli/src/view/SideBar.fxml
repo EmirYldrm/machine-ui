@@ -14,22 +14,22 @@
          <children>
             <HBox layoutY="-1.0" prefHeight="52.0" prefWidth="800.0" style="-fx-background-color: #9BA4B5;">
                <children>
-                  <JFXButton fx:id="mainPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#mainPage" prefWidth="200.0" style="-fx-background-color: #146C94;" text="MAIN" textFill="#f1f6f9">
+                  <JFXButton fx:id="mainPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#mainPage" prefWidth="200.0" style="-fx-background-color: #112D4E;" text="MAIN" textFill="#f1f6f9">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="connectPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#connectPage" prefWidth="200.0" ripplerFill="BLACK" style="-fx-background-color: #146C94;" text="CONNECT" textFill="#f1f6f9">
+                  <JFXButton fx:id="connectPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#connectPage" prefWidth="200.0" ripplerFill="BLACK" style="-fx-background-color: #112D4E;" text="CONNECT" textFill="#f1f6f9">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="processPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#processPage" prefWidth="200.0" style="-fx-background-color: #146C94;" text="PROCESS SETTING" textFill="#f1f6f9">
+                  <JFXButton fx:id="processPageButton" buttonType="RAISED" minHeight="50.0" onMouseClicked="#processPage" prefWidth="200.0" style="-fx-background-color: #112D4E;" text="PROCESS SETTING" textFill="#f1f6f9">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="productionPageButton" buttonType="RAISED" minHeight="50.0" prefWidth="200.0" style="-fx-background-color: #146C94;" text="PRODUCTION" textFill="#f1f6f9">
+                  <JFXButton fx:id="productionPageButton" buttonType="RAISED" minHeight="50.0" prefWidth="200.0" style="-fx-background-color: #112D4E;" text="PRODUCTION" textFill="#f1f6f9">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>
