@@ -7,6 +7,9 @@ public class MachineInfo {
 	private float nozzleSicaklik;
 	private float midSicaklik;
 	private float backSicaklik;
+	private float targetNozzleSicaklik;
+	private float targetMidSicaklik;
+	private float targetBackSicaklik;
 	
 	private State currentState;
 	
@@ -81,6 +84,31 @@ public class MachineInfo {
 		this.currentProcess = currentProcess;
 	}
 
+	public float getTargetNozzleSicaklik() {
+		return targetNozzleSicaklik;
+	}
+
+	public void setTargetNozzleSicaklik(float targetNozzleSicaklik) {
+		this.targetNozzleSicaklik = targetNozzleSicaklik;
+	}
+
+	public float getTargetBackSicaklik() {
+		return targetBackSicaklik;
+	}
+
+	public void setTargetBackSicaklik(float targetBackSicaklik) {
+		this.targetBackSicaklik = targetBackSicaklik;
+	}
+
+	public float getTargetMidSicaklik() {
+		return targetMidSicaklik;
+	}
+
+	public void setTargetMidSicaklik(float targetMidSicaklik) {
+		this.targetMidSicaklik = targetMidSicaklik;
+	}
+	
+	
 	private MachineInfo() {
         // Private constructor to prevent instantiation from outside the class
     }
@@ -91,5 +119,7 @@ public class MachineInfo {
         }
         return instance;
     }
+
+	
 	
 }
