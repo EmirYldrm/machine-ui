@@ -5,6 +5,12 @@ public class Motor {
 
 	public float kasnakOran;
 	public long oneMMStepcount;
+	public long stepCountPerRev;
+	
+	public long currentPosition;
+	public long targetPosition;
+	
+	public boolean homeStatus = false;
 	
 	public Motor() {}
 	
