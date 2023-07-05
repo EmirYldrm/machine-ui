@@ -1,6 +1,6 @@
-package Model;
+package Model.Motor;
 
-import Model.Motor.Motor;
+import Model.MachineConfig;
 
 public class KalipMotor extends Motor {
 
