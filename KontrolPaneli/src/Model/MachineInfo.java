@@ -1,5 +1,8 @@
 package Model;
 
+import Model.Motor.EnjeksiyonMotor;
+import Model.Motor.HelezonMotor;
+
 public class MachineInfo {
 	
 	private static MachineInfo instance;
@@ -13,9 +16,9 @@ public class MachineInfo {
 	
 	private State currentState;
 	
-	private Motor enjeksiyonMotor;
-	private Motor heleoznMotor;
-	private Motor kalipMotor;
+	private EnjeksiyonMotor enjeksiyonMotor;
+	private HelezonMotor heleoznMotor;
+	private KalipMotor kalipMotor;
 	
 	private Process currentProcess;
 	
@@ -52,27 +55,27 @@ public class MachineInfo {
 		this.currentState = currentState;
 	}
 
-	public Motor getEnjeksiyonMotor() {
+	public EnjeksiyonMotor getEnjeksiyonMotor() {
 		return enjeksiyonMotor;
 	}
 
-	public void setEnjeksiyonMotor(Motor enjeksiyonMotor) {
+	public void setEnjeksiyonMotor(EnjeksiyonMotor enjeksiyonMotor) {
 		this.enjeksiyonMotor = enjeksiyonMotor;
 	}
 
-	public Motor getHeleoznMotor() {
+	public HelezonMotor getHeleoznMotor() {
 		return heleoznMotor;
 	}
 
-	public void setHeleoznMotor(Motor heleoznMotor) {
+	public void setHeleoznMotor(HelezonMotor heleoznMotor) {
 		this.heleoznMotor = heleoznMotor;
 	}
 
-	public Motor getKalipMotor() {
+	public KalipMotor getKalipMotor() {
 		return kalipMotor;
 	}
 
-	public void setKalipMotor(Motor kalipMotor) {
+	public void setKalipMotor(KalipMotor kalipMotor) {
 		this.kalipMotor = kalipMotor;
 	}
 
@@ -119,7 +122,18 @@ public class MachineInfo {
         }
         return instance;
     }
-
+	
+	// Step motor objelerinin ayarlanması
+	// Overload
+	public static synchronized MachineInfo getInstance(EnjeksiyonMotor enjmotor, HelezonMotor helmotor, KalipMotor kalmotor) {
+        if (instance == null) {
+            instance = new MachineInfo();
+            instance.setEnjeksiyonMotor(enjmotor);
+            instance.setHeleoznMotor(helmotor);
+            instance.setKalipMotor(kalmotor);
+        }
+        return instance;
+    }
 	
 	
 }
