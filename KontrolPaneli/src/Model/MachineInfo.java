@@ -2,6 +2,9 @@ package Model;
 
 import Model.Motor.EnjeksiyonMotor;
 import Model.Motor.HelezonMotor;
+import Model.Motor.KalipMotor;
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.SimpleFloatProperty;
 
 public class MachineInfo {
 	
@@ -13,6 +16,7 @@ public class MachineInfo {
 	private float targetNozzleSicaklik;
 	private float targetMidSicaklik;
 	private float targetBackSicaklik;
+	
 	
 	private State currentState;
 	
@@ -110,8 +114,18 @@ public class MachineInfo {
 	public void setTargetMidSicaklik(float targetMidSicaklik) {
 		this.targetMidSicaklik = targetMidSicaklik;
 	}
+	// Property kısımlarını bind etmek için kullanılacak fonksiyonlar
+	public FloatProperty getNozzleTempProperty() {
+		return new SimpleFloatProperty(this.nozzleSicaklik);
+	}
 	
+	public FloatProperty getMidTempProperty() {
+		return new SimpleFloatProperty(this.midSicaklik);
+	}
 	
+	public FloatProperty getBackTempProperty() {
+		return new SimpleFloatProperty(this.backSicaklik);
+	}
 	private MachineInfo() {
         // Private constructor to prevent instantiation from outside the class
     }
