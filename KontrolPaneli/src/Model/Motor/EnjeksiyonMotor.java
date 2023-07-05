@@ -1,4 +1,6 @@
-package Model;
+package Model.Motor;
+
+import Model.MachineConfig;
 
 public class EnjeksiyonMotor extends Motor{
 	

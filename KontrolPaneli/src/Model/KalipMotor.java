@@ -1,5 +1,7 @@
 package Model;
 
+import Model.Motor.Motor;
+
 public class KalipMotor extends Motor {
 
 	public KalipMotor() {

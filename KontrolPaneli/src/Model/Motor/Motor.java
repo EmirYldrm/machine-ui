@@ -1,6 +1,6 @@
-package Model;
+package Model.Motor;
 
-import Model.MachineConfig;
+
 public class Motor {
 
 	public float kasnakOran;
@@ -12,7 +12,10 @@ public class Motor {
 	
 	public boolean homeStatus = false;
 	
-	public Motor() {}
+	public Motor() {
+		this.currentPosition = 0;
+		this.targetPosition = 0;
+	}
 	
 	public long grToStep(float hacim) {
 	
