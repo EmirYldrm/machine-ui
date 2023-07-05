@@ -1,4 +1,4 @@
-package Serial;
+package Serial.Commands;
 
 public class CommandHandler {
 	
