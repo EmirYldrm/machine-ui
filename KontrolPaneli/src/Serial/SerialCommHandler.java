@@ -2,28 +2,43 @@ package Serial;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.List;
 
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortDataListener;
 import com.fazecast.jSerialComm.SerialPortEvent;
 
+import Model.MachineInfo;
+import Serial.Commands.CommandHandler;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
 public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 	
+	
+	private static SerialCommHandler instance;
 	private SerialPort sp;
 	private OutputStream outputStream1;
 	public  InputStream input;
+	private CommandHandler comHandler;
 	
-	// bu obje ile controller arasinda bind işlemi gerçekleşecek.
-	private StringProperty command;
 
-	// Constructor.
-	public SerialCommHandler(){
-		command = new SimpleStringProperty();
-	}
+	// bu obje ile controller arasinda bind işlemi gerçekleşecek.
+	private StringProperty command = new SimpleStringProperty();
+
+	// Singleton Constructor.
+	private SerialCommHandler() {
+        // Private constructor to prevent instantiation from outside the class
+    }
+	
+	public static synchronized SerialCommHandler getInstance() {
+        if (instance == null) {
+            instance = new SerialCommHandler();
+        }
+        return instance;
+    }
 	
 	
 	@Override
@@ -103,13 +118,18 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 		while (sp.bytesAvailable() > 0)
-          {
+		{
           byte[] readBuffer = new byte[sp.bytesAvailable()];
           int numRead = sp.readBytes(readBuffer, readBuffer.length);
-
-          setCommand(new String(readBuffer));
-          }
+          String commands = new String(readBuffer);
+          String[] commandArray = commands.split("\\n");
+          System.out.println(commandArray);
+          List<String> currentCommandList = Arrays.asList(commandArray);// hata var
+          setCommand(commands);
+          this.comHandler.executeCommand(currentCommandList);
+        }
 		
 	}
 
@@ -126,6 +146,13 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 		return this.command;
 	}
 	
+	public CommandHandler getComHandler() {
+		return comHandler;
+	}
+
+	public void setComHandler(CommandHandler comHandler) {
+		this.comHandler = comHandler;
+	}
 	
 	
 	

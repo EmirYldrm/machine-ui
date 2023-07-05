@@ -58,7 +58,7 @@ public class ConnectionPageController implements Initializable{
     @FXML
     void connectToBoard(MouseEvent event) {
     	
-    	scm = new SerialCommHandler();
+    	scm = SerialCommHandler.getInstance();
 		if(baglanButton.getText().equals("BAĞLAN")) {
 			//boolean conn = scm.connectToPort(portBox.getValue(),115200);
 			boolean conn = scm.connectToPort(this.comPortName,115200);
@@ -78,30 +78,7 @@ public class ConnectionPageController implements Initializable{
 
     @FXML
     void sendCommand(MouseEvent event) {
-    	
-//    	String message = "";
-//    	
-//		if(scm.getSp().isOpen() == true) {
-//			try {
-//				
-//				message = commandField.getText();
-//				message = message.formatted("%s\n", message);
-//
-//				outputStream1.write(message.getBytes());
-//				outputStream1.flush();
-//				commandField.clear();
-//				commandField.setText(""); 
-//				//messageArea.appendText(String.valueOf(input.read()));
-//			}
-//			catch(Exception e) {
-//				System.out.println("sendmessage");
-//				e.printStackTrace();
-//
-//			}
-//		}
-//		else {
-//			System.out.println("port Seçilmedi");
-//		}
+
     	
     	scm.sendString(commandField.getText());
     	commandField.clear();

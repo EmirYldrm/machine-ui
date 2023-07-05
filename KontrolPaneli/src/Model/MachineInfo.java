@@ -126,6 +126,7 @@ public class MachineInfo {
 	public FloatProperty getBackTempProperty() {
 		return new SimpleFloatProperty(this.backSicaklik);
 	}
+	
 	private MachineInfo() {
         // Private constructor to prevent instantiation from outside the class
     }
