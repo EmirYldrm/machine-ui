@@ -1,6 +1,7 @@
 package Serial.Commands;
 
 import Model.MachineInfo;
+import javafx.application.Platform;
 
 public class GetNozzleTempCommand implements ICommand{
 	
@@ -8,7 +9,11 @@ public class GetNozzleTempCommand implements ICommand{
 	
 	@Override
 	public void execute() {
-		MachineInfo.getInstance().setNozzleSicaklik(temperature);
+		//System.out.println("getnozzletemp = " + this.temperature);
+		Platform.runLater(() -> {
+			MachineInfo.getInstance().setNozzleSicaklik(temperature);
+	    });
+		
 		
 	}
 	

@@ -1,6 +1,7 @@
 package Serial.Commands;
 
 import Model.MachineInfo;
+import javafx.application.Platform;
 
 public class GetMidTempCommand implements ICommand{
 	
@@ -9,7 +10,9 @@ public class GetMidTempCommand implements ICommand{
 	
 	@Override
 	public void execute() {
-		MachineInfo.getInstance().setMidSicaklik(temperature);
+		Platform.runLater(() -> {
+			MachineInfo.getInstance().setMidSicaklik(temperature);
+	    });
 		
 	}
 	

@@ -1,6 +1,7 @@
 package Serial.Commands;
 
 import Model.MachineInfo;
+import javafx.application.Platform;
 
 public class GetBackTempCommand implements ICommand{
 
@@ -8,8 +9,9 @@ public class GetBackTempCommand implements ICommand{
 	
 	@Override
 	public void execute() {
-		MachineInfo.getInstance().setBackSicaklik(temperature);
-		
+		Platform.runLater(() -> {
+			MachineInfo.getInstance().setBackSicaklik(temperature);
+	    });
 	}
 	
 	@Override
