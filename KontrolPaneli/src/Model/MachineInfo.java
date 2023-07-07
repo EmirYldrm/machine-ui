@@ -10,12 +10,12 @@ public class MachineInfo {
 	
 	private static MachineInfo instance;
 	
-	private float nozzleSicaklik;
-	private float midSicaklik;
-	private float backSicaklik;
-	private float targetNozzleSicaklik;
-	private float targetMidSicaklik;
-	private float targetBackSicaklik;
+	private FloatProperty nozzleSicaklik = new SimpleFloatProperty();
+	private FloatProperty midSicaklik= new SimpleFloatProperty();
+	private FloatProperty backSicaklik= new SimpleFloatProperty();
+	private FloatProperty targetNozzleSicaklik= new SimpleFloatProperty();
+	private FloatProperty targetMidSicaklik= new SimpleFloatProperty();
+	private FloatProperty targetBackSicaklik= new SimpleFloatProperty();
 	
 	
 	private State currentState;
@@ -28,27 +28,28 @@ public class MachineInfo {
 	
 	
 	public float getNozzleSicaklik() {
-		return nozzleSicaklik;
+		return nozzleSicaklik.get();
 	}
 
 	public void setNozzleSicaklik(float nozzleSicaklik) {
-		this.nozzleSicaklik = nozzleSicaklik;
+		System.out.println("machine ınfo "+ this.nozzleSicaklik);
+		this.nozzleSicaklik.set(nozzleSicaklik);
 	}
 
 	public float getMidSicaklik() {
-		return midSicaklik;
+		return midSicaklik.get();
 	}
 
 	public void setMidSicaklik(float midSicaklik) {
-		this.midSicaklik = midSicaklik;
+		this.midSicaklik.set(midSicaklik);;
 	}
 
 	public float getBackSicaklik() {
-		return backSicaklik;
+		return backSicaklik.get();
 	}
 
 	public void setBackSicaklik(float backSicaklik) {
-		this.backSicaklik = backSicaklik;
+		this.backSicaklik.set(backSicaklik);;
 	}
 
 	public State getCurrentState() {
@@ -92,39 +93,40 @@ public class MachineInfo {
 	}
 
 	public float getTargetNozzleSicaklik() {
-		return targetNozzleSicaklik;
+		return targetNozzleSicaklik.get();
 	}
 
 	public void setTargetNozzleSicaklik(float targetNozzleSicaklik) {
-		this.targetNozzleSicaklik = targetNozzleSicaklik;
+		this.targetNozzleSicaklik.set(targetNozzleSicaklik);;
 	}
 
 	public float getTargetBackSicaklik() {
-		return targetBackSicaklik;
+		return targetBackSicaklik.get();
 	}
 
 	public void setTargetBackSicaklik(float targetBackSicaklik) {
-		this.targetBackSicaklik = targetBackSicaklik;
+		this.targetBackSicaklik.set(targetBackSicaklik);;
 	}
 
 	public float getTargetMidSicaklik() {
-		return targetMidSicaklik;
+		return targetMidSicaklik.get();
 	}
 
 	public void setTargetMidSicaklik(float targetMidSicaklik) {
-		this.targetMidSicaklik = targetMidSicaklik;
+		this.targetMidSicaklik.set(targetMidSicaklik);;
 	}
 	// Property kısımlarını bind etmek için kullanılacak fonksiyonlar
 	public FloatProperty getNozzleTempProperty() {
-		return new SimpleFloatProperty(this.nozzleSicaklik);
+		
+		return this.nozzleSicaklik;
 	}
 	
 	public FloatProperty getMidTempProperty() {
-		return new SimpleFloatProperty(this.midSicaklik);
+		return this.midSicaklik;
 	}
 	
 	public FloatProperty getBackTempProperty() {
-		return new SimpleFloatProperty(this.backSicaklik);
+		return this.backSicaklik;
 	}
 	
 	private MachineInfo() {
