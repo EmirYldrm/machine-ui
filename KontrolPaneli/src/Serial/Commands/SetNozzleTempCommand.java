@@ -2,6 +2,7 @@ package Serial.Commands;
 
 import Model.MachineInfo;
 import Serial.SerialCommHandler;
+import javafx.application.Platform;
 
 public class SetNozzleTempCommand implements ICommand{
 
@@ -11,7 +12,7 @@ public class SetNozzleTempCommand implements ICommand{
 	@Override
 	public void execute() {
 		SerialCommHandler.getInstance().sendString("S1 " + temperature);
-		MachineInfo.getInstance().setTargetNozzleSicaklik(temperature);
+		
 	}
 	
 	@Override
