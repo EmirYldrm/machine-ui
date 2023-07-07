@@ -116,14 +116,44 @@ public class MainPageController implements Initializable{
 			
 		}
 		System.out.println(comPortName + "seçildi");
-		// Karta bağlanma işlemi
-		scm = SerialCommHandler.getInstance();
-		boolean conn = scm.connectToPort(comPortName,115200);
 		
 		// komut halledici oluşturulup komutlar ekleniyor.
 		comHandler = new CommandHandler();
-		comHandler.registerCommand("S1 ", new SetNozzleTempCommand());
-		comHandler.registerCommand("TEMP1 ", new GetNozzleTempCommand());
+		
+		comHandler.registerCommand("S1", new SetNozzleTempCommand());
+		comHandler.registerCommand("S2", new SetMidTempCommand());
+		comHandler.registerCommand("S3", new SetBackTempCommand());
+		
+		comHandler.registerCommand("TEMP1", new GetNozzleTempCommand());
+		comHandler.registerCommand("TEMP2", new GetMidTempCommand());
+		comHandler.registerCommand("TEMP3", new GetBackTempCommand());
+		
+//		comHandler.registerCommand("B", new StartProcessCommand());
+//		comHandler.registerCommand("W", new PauseProcessCommand());
+//		comHandler.registerCommand("C", new CancelProcessCommand());
+//		
+//		comHandler.registerCommand("PH", new SetProcessVolumeCommand());
+//		comHandler.registerCommand("PU", new SetProcessCountCommand());
+//		comHandler.registerCommand("PO", new SetProcessRateCommand());
+//		comHandler.registerCommand("PS", new SetProcessInjectionSpeedCommand());
+//		comHandler.registerCommand("PD", new SetProcessFillSpeedCommand());
+//		comHandler.registerCommand("PF", new SetProcessFallCountCommand());
+//		comHandler.registerCommand("PP", new SetProcessPinLenghtCommand());
+//		comHandler.registerCommand("PM", new SetProcessMoldMaxDistanceCommand());
+//		
+//		comHandler.registerCommand("KK", new MoveKalipMotorCommand());
+//		comHandler.registerCommand("E0", new HomeEnjeksiyonCommand());
+//		comHandler.registerCommand("K0", new HomeKalipCommand());
+//		
+		
+		
+		
+		// Karta bağlanma işlemi
+		scm = SerialCommHandler.getInstance();
+		scm.setComHandler(comHandler);
+		boolean conn = scm.connectToPort(comPortName,115200);
+		
+		
 		
 		// thread içeriinde çağırılacak comhandler ekleniyor.
 		scm.setComHandler(comHandler);
@@ -134,16 +164,13 @@ public class MainPageController implements Initializable{
 		
 		// bind etmek için floatpropery oluşturup lambda fonksiyonu ile bind işlemini gerçekleştiriyoruz.
 		FloatProperty nozzleTemp = machine.getNozzleTempProperty();
-		nozzleLabel.textProperty().bind(Bindings.createStringBinding(() ->
-        	String.format("%.2f", nozzleTemp.get()), nozzleTemp));
-
-		FloatProperty ortaTemp = machine.getMidTempProperty();
-		ortaLabel.textProperty().bind(Bindings.createStringBinding(() ->
-        	String.format("%.2f", ortaTemp.get()), ortaTemp));
+		FloatProperty midTemp = machine.getMidTempProperty();
+		FloatProperty backTemp = machine.getBackTempProperty();
 		
-		FloatProperty arkaTemp = machine.getBackTempProperty();
-		arkaLabel.textProperty().bind(Bindings.createStringBinding(() ->
-        	String.format("%.2f", arkaTemp.get()), arkaTemp));
+		nozzleLabel.textProperty().bind(nozzleTemp.asString());
+		ortaLabel.textProperty().bind(midTemp.asString());
+		arkaLabel.textProperty().bind(backTemp.asString());
+		
 	}
 
 }
