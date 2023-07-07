@@ -5,8 +5,11 @@ import java.util.Date;
 public class Process {
 
 	private String isim;
-
+	
 	private Date tarih;
+
+	private int parcaSayisi = 0;
+
 
 	private int hedefSayi;
 	private int parcaDusurmeSayisi;
@@ -43,6 +46,15 @@ public class Process {
 	public void setTarih(Date tarih) {
 		this.tarih = tarih;
 	}
+	
+	public int getParcaSayisi() {
+		return parcaSayisi;
+	}
+
+	public void setParcaSayisi(int parcaSayisi) {
+		this.parcaSayisi = parcaSayisi;
+	}
+
 
 	public int getHedefSayi() {
 		return hedefSayi;
