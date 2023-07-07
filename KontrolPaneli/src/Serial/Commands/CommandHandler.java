@@ -14,12 +14,15 @@ public class CommandHandler {
 
     public void executeCommand(String commandString) {
     	
-    	System.out.println(commandString + "  comhandler executecomand");
+    	//System.out.println(commandString + "  comhandler executecomand");
     	// Eger komut parametreli 
     	if(commandString.contains(" ") == true) {
+    		
 	    	String[] parts = commandString.split("\\s+", 2); // Split command and parameters
 	        String commandName = parts[0];
 	        String parameter = parts[1];
+	        
+	        System.out.println("isim = " + commandName + "  parametresi = " + parameter);
 	
 	        ICommand command = commandMap.get(commandName);
 	        if (command != null) {
@@ -36,13 +39,14 @@ public class CommandHandler {
     }
     // Overload
     public void executeCommand(List<String> commandList) {
-    	System.out.println("herere ");
-    	while(!commandList.isEmpty()) {
-    		
-    		String commandString = commandList.remove(0);
-    		System.out.println(commandString + " list executer");
-    		executeCommand(commandString);
-    	}
+    	System.out.println("herere ");    	
+    	System.out.println( commandList);
+    	
+    	for (String element : commandList) {
+            // Pass the element to a function
+            //System.out.println(element + " oldu len");
+    		this.executeCommand(element);
+        }
     	return;
     }
 }
