@@ -24,76 +24,101 @@ import javafx.scene.input.MouseEvent;
 public class MainPageController implements Initializable{
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	MachineInfo machine;
+	private MachineInfo machine;
 	private CommandHandler comHandler;
 	private SerialCommHandler scm;
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-    @FXML
-    private Label arkaLabel;
-
-    @FXML
-    private TextField arkaTempField;
-
-    @FXML
-    private Button arkaTempSetButton;
-
-    @FXML
-    private Label currentProcessLabel;
-
-    @FXML
-    private Button enjeksiyonHomeButton;
-
-    @FXML
-    private Label enjeksiyonKonumLabel;
-
-    @FXML
-    private Button kalipHomeButton;
-
-    @FXML
-    private Label kalipKonumLabel;
-
-    @FXML
-    private Button kalipLeftButton;
-
-    @FXML
-    private Button kalipRightButton;
-
-    @FXML
-    private Label machineStatusLabel;
-
-    @FXML
-    private Label nozzleLabel;
-
-    @FXML
-    private TextField nozzleTempField;
-
-    @FXML
-    private Button nozzleTempSetButton;
-
-    @FXML
-    private Label ortaLabel;
-
-    @FXML
-    private TextField ortaTempField;
-
-    @FXML
-    private Button ortaTempSetButton;
-
-    @FXML
-    private ProgressBar processBar;
-
-    @FXML
-    private Button processBeginButton;
-
-    @FXML
-    private Button processSettingButton;
-    
-    @FXML
-    private TextArea testField;
+	@FXML
+	private Label arkaLabel;
+	
+	@FXML
+	private TextField arkaTempField;
+	
+	@FXML
+	private Button arkaTempSetButton;
+	
+	@FXML
+	private Label currentProcessLabel;
+	
+	@FXML
+	private Button enjeksiyonHomeButton;
+	
+	@FXML
+	private Label enjeksiyonKonumLabel;
+	
+	@FXML
+	private Button kalipHomeButton;
+	
+	@FXML
+	private Label kalipKonumLabel;
+	
+	@FXML
+	private Button kalipLeftButton;
+	
+	@FXML
+	private Label machineStatusLabel;
+	
+	@FXML
+	private Button moveKalipMotor;
+	
+	@FXML
+	private Label nozzleLabel;
+	
+	@FXML
+	private TextField nozzleTempField;
+	
+	@FXML
+	private Button nozzleTempSetButton;
+	
+	@FXML
+	private Label ortaLabel;
+	
+	@FXML
+	private TextField ortaTempField;
+	
+	@FXML
+	private Button ortaTempSetButton;
+	
+	@FXML
+	private ProgressBar processBar;
+	
+	@FXML
+	private Button processBeginButton;
+	
+	@FXML
+	private Button processSettingButton;
+	
+	@FXML
+	private TextArea testField;
 
     @FXML
     void sendNozzleTemperature(MouseEvent event) {
 		comHandler.executeCommand("S1 " + this.nozzleTempField.getText());
+    }
+    
+    @FXML
+    void enjeksiyonHome(MouseEvent event) {
+    	this.scm.sendString("E0");
+    }
+
+    @FXML
+    void homeKalipMotor(MouseEvent event) {
+    	this.scm.sendString("K0");
+    }
+
+    @FXML
+    void moveKalipLeft(MouseEvent event) {
+    	this.scm.sendString("KK -5000");
+	}
+
+    @FXML
+    void moveKaliprRight(MouseEvent event) {
+    	this.scm.sendString("KK 5000");
+    }
+    
+    @FXML
+    void startProcess(MouseEvent event) {
+    	this.scm.sendString("B");
     }
     
     public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
@@ -104,14 +129,36 @@ public class MainPageController implements Initializable{
     	this.machine = machine;
     }
     
+    public void setComHandler(CommandHandler comHandler) {
+    	this.comHandler = comHandler;
+    }
+    
+    public void initalizepage() {
+		
+		if(scm != null)
+			testField.textProperty().bind(scm.commandProtperty());
+		
+		
+		// bind etmek için floatpropery oluşturup lambda fonksiyonu ile bind işlemini gerçekleştiriyoruz.
+		FloatProperty nozzleTemp = machine.getNozzleTempProperty();
+		FloatProperty midTemp = machine.getMidTempProperty();
+		FloatProperty backTemp = machine.getBackTempProperty();
+		
+		nozzleLabel.textProperty().bind(nozzleTemp.asString());
+		ortaLabel.textProperty().bind(midTemp.asString());
+		arkaLabel.textProperty().bind(backTemp.asString());
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
+		this.scm = SerialCommHandler.getInstance();
+		this.comHandler = scm.getComHandler();
+		this.machine  = MachineInfo.getInstance();
 		
-		
-		machine  = MachineInfo.getInstance();
 		if(scm != null)
 			testField.textProperty().bind(scm.commandProtperty());
+		
 		
 		// bind etmek için floatpropery oluşturup lambda fonksiyonu ile bind işlemini gerçekleştiriyoruz.
 		FloatProperty nozzleTemp = machine.getNozzleTempProperty();

@@ -5,6 +5,10 @@ import com.fazecast.jSerialComm.SerialPort;
 import Controllers.ConnectionPageController;
 import Controllers.MainPageController;
 import Controllers.SideBarController;
+import Model.MachineInfo;
+import Model.Motor.EnjeksiyonMotor;
+import Model.Motor.HelezonMotor;
+import Model.Motor.KalipMotor;
 import Serial.SerialCommHandler;
 import Serial.Commands.BeginProcessCommand;
 import Serial.Commands.CancelProcessCommand;
@@ -57,24 +61,24 @@ public class Main extends Application {
 			   // Seri haberleşme başlatılıyor.
 			 	SerialCommHandler serialCommunicationHandler  = initSerialComm();
 			 	
+			 	MachineInfo machine = MachineInfo.getInstance();
+			 	machine.setEnjeksiyonMotor(new EnjeksiyonMotor());
+			 	machine.setKalipMotor(new KalipMotor());
+			 	machine.setHeleoznMotor(new HelezonMotor());
+			 	
 			 	// Side Bar seri haberleşmesi instance ekleniyor.
 		        FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/view/SideBar.fxml"));
 		        Parent sidebarRoot = sidebarLoader.load();
 		        SideBarController sidebarController = sidebarLoader.getController();
 		        sidebarController.setSerialCommunicationHandler(serialCommunicationHandler);
+		        sidebarController.setMachineInfo(machine);
 		        
-		        // Main page  seri haberleşme instance ekleniyor
-		        FXMLLoader mainPageLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
-		        Parent page1Root = mainPageLoader.load();
-		        MainPageController mainController = mainPageLoader.getController();
+		       /* FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
+		        Parent mainparent = sidebarLoader.load();
+		        SideBarController mainController = sidebarLoader.getController();
 		        mainController.setSerialCommunicationHandler(serialCommunicationHandler);
-		        
-		        // Connection page seri haberleşme instance ekleniyor
-		        FXMLLoader connectionLoader = new FXMLLoader(getClass().getResource("/view/ConnectionPage.fxml"));
-		        Parent page2Root = connectionLoader.load();
-		        ConnectionPageController page1Controller = connectionLoader.getController();
-		        page1Controller.setSerialCommunicationHandler(serialCommunicationHandler);
-		        
+		        mainController.setMachineInfo(machine);
+		       */
 
 
 		        // Instantiate the SerialCommunicationHandler
@@ -87,6 +91,7 @@ public class Main extends Application {
 		        primaryStage.setScene(scene);
 		        primaryStage.setTitle("Enjeksiyon Makinesi Kontrol Paneli");
 		        primaryStage.show();
+		        
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
@@ -153,15 +158,15 @@ public class Main extends Application {
 		// Karta bağlanma işlemi
 		scm = SerialCommHandler.getInstance();
 		scm.setComHandler(comHandler);
-		boolean conn = scm.connectToPort(comPortName,115200);
+		boolean conn = scm.connectToPort(comPortName, 115200);
 		
-		
+		if(conn == false) {
+			System.out.println("conn olmadi");
+		}
 		
 		// thread içeriinde çağırılacak comhandler ekleniyor.
 		scm.setComHandler(comHandler);
-		if(scm == null) {
-			System.out.println("walla null ula ");
-		}
+
 		return scm;
 	}
 }

@@ -10,6 +10,7 @@ import java.util.Scanner;
 import com.fazecast.jSerialComm.SerialPort;
 import com.jfoenix.controls.JFXTextArea;
 
+import Model.MachineInfo;
 import Serial.SerialCommHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +26,8 @@ public class ConnectionPageController implements Initializable{
 ///////////////////////////////////////////////////////////////
 
 	private SerialPort sp;
+	
+	private MachineInfo machine;
 
 	private OutputStream outputStream1;
 	public  InputStream input;
@@ -88,6 +91,10 @@ public class ConnectionPageController implements Initializable{
     
     public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
     	this.scm = serialHandler;
+    }
+    
+    public void setMachineInfo(MachineInfo machine) {
+    	this.machine = machine;
     }
     
 	@Override

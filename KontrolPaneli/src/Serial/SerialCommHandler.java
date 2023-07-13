@@ -124,6 +124,7 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
           byte[] readBuffer = new byte[sp.bytesAvailable()];
           int numRead = sp.readBytes(readBuffer, readBuffer.length);
           String commands = new String(readBuffer);
+          System.out.println(commands);
           String[] commandArray = commands.split("\\n");
           //System.out.println(commandArray[0]);
           List<String> currentCommandList = Arrays.asList(commandArray);// hata var

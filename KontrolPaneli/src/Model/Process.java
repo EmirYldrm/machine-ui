@@ -2,6 +2,8 @@ package Model;
 
 import java.util.Date;
 
+import Model.Motor.KalipMotor;
+
 public class Process {
 
 	private String isim;
@@ -85,6 +87,7 @@ public class Process {
 	}
 
 	public void setHelezonAdim(long helezonAdim) {
+		
 		this.helezonAdim = helezonAdim;
 	}
 
@@ -101,7 +104,10 @@ public class Process {
 	}
 
 	public void setKalipAdim(long kalipAdim) {
+		
+		
 		this.kalipAdim = kalipAdim;
+		
 	}
 
 	public long getPinUzunluk() {
