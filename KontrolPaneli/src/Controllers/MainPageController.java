@@ -96,70 +96,21 @@ public class MainPageController implements Initializable{
 		comHandler.executeCommand("S1 " + this.nozzleTempField.getText());
     }
     
+    public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
+    	this.scm = serialHandler;
+    }
+    
+    public void setMachineInfo(MachineInfo machine) {
+    	this.machine = machine;
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		String comPortName = "";
 		
-		// kart aranıyor...
-		if(SerialPort.getCommPorts() != null) {
-			
-			SerialPort[] portList = SerialPort.getCommPorts();
-			
-			for(SerialPort port: portList) {
-				System.out.println(port.getSystemPortName());
-				
-				// Buradaki if ile arduinoya otomatik olarak bağlanabiliyoruz.
-				if(port.getDescriptivePortName().contains("CH340"))
-					comPortName = port.getSystemPortName();
-			}
-			
-		}
-		System.out.println(comPortName + "seçildi");
-		
-		// komut halledici oluşturulup komutlar ekleniyor.
-		comHandler = new CommandHandler();
-		
-		comHandler.registerCommand("S1", new SetNozzleTempCommand());
-		comHandler.registerCommand("S2", new SetMidTempCommand());
-		comHandler.registerCommand("S3", new SetBackTempCommand());
-		
-		comHandler.registerCommand("TEMP1", new GetNozzleTempCommand());
-		comHandler.registerCommand("TEMP2", new GetMidTempCommand());
-		comHandler.registerCommand("TEMP3", new GetBackTempCommand());
-		
-//		comHandler.registerCommand("B", new StartProcessCommand());
-//		comHandler.registerCommand("W", new PauseProcessCommand());
-//		comHandler.registerCommand("C", new CancelProcessCommand());
-//		
-//		comHandler.registerCommand("PH", new SetProcessVolumeCommand());
-//		comHandler.registerCommand("PU", new SetProcessCountCommand());
-//		comHandler.registerCommand("PO", new SetProcessRateCommand());
-//		comHandler.registerCommand("PS", new SetProcessInjectionSpeedCommand());
-//		comHandler.registerCommand("PD", new SetProcessFillSpeedCommand());
-//		comHandler.registerCommand("PF", new SetProcessFallCountCommand());
-//		comHandler.registerCommand("PP", new SetProcessPinLenghtCommand());
-//		comHandler.registerCommand("PM", new SetProcessMoldMaxDistanceCommand());
-//		
-//		comHandler.registerCommand("KK", new MoveKalipMotorCommand());
-//		comHandler.registerCommand("E0", new HomeEnjeksiyonCommand());
-//		comHandler.registerCommand("K0", new HomeKalipCommand());
-//		
-		
-		
-		
-		// Karta bağlanma işlemi
-		scm = SerialCommHandler.getInstance();
-		scm.setComHandler(comHandler);
-		boolean conn = scm.connectToPort(comPortName,115200);
-		
-		
-		
-		// thread içeriinde çağırılacak comhandler ekleniyor.
-		scm.setComHandler(comHandler);
 		
 		machine  = MachineInfo.getInstance();
-		if(conn)
+		if(scm != null)
 			testField.textProperty().bind(scm.commandProtperty());
 		
 		// bind etmek için floatpropery oluşturup lambda fonksiyonu ile bind işlemini gerçekleştiriyoruz.

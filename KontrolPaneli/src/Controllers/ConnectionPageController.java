@@ -85,6 +85,11 @@ public class ConnectionPageController implements Initializable{
   		commandField.setText(""); 
     }
 
+    
+    public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
+    	this.scm = serialHandler;
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
