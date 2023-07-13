@@ -22,4 +22,9 @@ public class Motor {
 		return 0;
 	}
 	
+	public void resetStepper() {
+		this.currentPosition = 0;
+		this.targetPosition = 0;
+	}
+	
 }

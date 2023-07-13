@@ -6,8 +6,8 @@ public class KalipMotor extends Motor {
 
 	public KalipMotor() {
 		super();
-		this.kasnakOran = 10.24f;
-		this.stepCountPerRev = 200;
+		this.kasnakOran = MachineConfig.kalipKasnakOran;
+		this.stepCountPerRev = MachineConfig.stepPerRev;
 		this.oneMMStepcount = (long)((this.kasnakOran * this.stepCountPerRev) / MachineConfig.milHatve); // cast kısmında hata çıkabilir buraya dikkat et
 		
 	}
