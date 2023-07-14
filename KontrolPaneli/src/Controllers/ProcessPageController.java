@@ -252,14 +252,35 @@ public class ProcessPageController implements Initializable{
     void updateTheProject(MouseEvent event) {
     	machine.setCurrentProcess(process);
     }
+    
+    public void setCurrentProcess() {
+    	
+    	this.hacimLabel.setText(String.valueOf(process.getParcaHacim()));
+    	this.coollabel.setText(String.valueOf(process.getBeklemeSuresi()));
+    	this.dolHizLabel.setText(String.valueOf(process.getDolumHiz()));
+    	this.enjHizLabel.setText(String.valueOf(process.getEnjeksiyonHiz()));
+    	this.oranLabel.setText(String.valueOf(process.getEnjeksiyonHelezonFactor()));
+    	this.fallLabel.setText(String.valueOf(process.getParcaDusurmeSayisi()));
+    	this.sayiLabel.setText(String.valueOf(process.getHedefSayi()));
+    	this.kalMaxLabel.setText(String.valueOf(process.getKalipAdim()));
+    	this.isimLabel.setText(String.valueOf(process.getIsim()));
+    	this.pinLenLabel.setText(String.valueOf(process.getPinUzunluk()));
+    	
+    }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.scm = SerialCommHandler.getInstance();
 		this.comHandler = scm.getComHandler();
 		this.machine  = MachineInfo.getInstance();
+		if(machine.getCurrentProcess() == null) {
+			process = new Process();
+		}
+		else {
+			this.process = machine.getCurrentProcess();
+			setCurrentProcess();
+		}
 		
-		process = new Process();
 	}
 
 }

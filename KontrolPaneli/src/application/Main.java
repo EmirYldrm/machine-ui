@@ -81,9 +81,6 @@ public class Main extends Application {
 		       */
 
 
-		        // Instantiate the SerialCommunicationHandler
-		        //SerialCommunicationHandler serialCommunicationHandler = new SerialCommunicationHandler();
-		       
 
 		        Scene scene = new Scene(sidebarRoot);
 		        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
