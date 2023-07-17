@@ -22,7 +22,7 @@ public class CommandHandler {
 	        String commandName = parts[0];
 	        String parameter = parts[1];
 	        
-	        System.out.println("isim = " + commandName + "  parametresi = " + parameter);
+	        //System.out.println("isim = " + commandName + "  parametresi = " + parameter);
 	
 	        ICommand command = commandMap.get(commandName);
 	        if (command != null) {
@@ -39,7 +39,7 @@ public class CommandHandler {
     }
     // Overload
     public void executeCommand(List<String> commandList) {
-    	System.out.println("herere ");    	
+    	//System.out.println("herere ");    	
     	System.out.println( commandList);
     	
     	for (String element : commandList) {
