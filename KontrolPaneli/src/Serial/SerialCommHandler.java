@@ -63,7 +63,7 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 	@Override
 	public void sendString(String data) {
 		String message = data;
-    	
+    	System.out.println("GİDEN KOMUT : " + message);
 		if(sp.isOpen() == true) {
 			try {
 				
