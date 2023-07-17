@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -38,7 +39,7 @@ public class MainPageController implements Initializable{
 	private Button arkaTempSetButton;
 	
 	@FXML
-	private Label currentProcessLabel;
+	private Label Label;
 	
 	@FXML
 	private Button enjeksiyonHomeButton;
@@ -57,6 +58,9 @@ public class MainPageController implements Initializable{
 	
 	@FXML
 	private Label machineStatusLabel;
+	
+    @FXML
+    private TextField moldDistanceField;
 	
 	@FXML
 	private Button moveKalipMotor;
@@ -108,12 +112,45 @@ public class MainPageController implements Initializable{
 
     @FXML
     void moveKalipLeft(MouseEvent event) {
-    	this.scm.sendString("KK -5000");
+
+    	String str = moldDistanceField.getText();
+        try {
+        	long distance = Long.parseLong(str);
+        	long stepCount =  machine.getKalipMotor().oneMMStepcount * distance;
+        	this.scm.sendString("KK " + stepCount);
+
+        } catch (NumberFormatException ex) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Geçersiz Giriş");
+            alert.setContentText("Lütfen bir tam sayı girin.");
+            alert.showAndWait();
+
+            moldDistanceField.clear();
+        }
+    	
 	}
 
     @FXML
     void moveKaliprRight(MouseEvent event) {
-    	this.scm.sendString("KK 5000");
+    	String str = moldDistanceField.getText();
+        try {
+        	long distance = Long.parseLong(str);
+        	long stepCount =  machine.getKalipMotor().oneMMStepcount * distance;
+        	this.scm.sendString("KK " + stepCount);
+
+        } catch (NumberFormatException ex) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Geçersiz Giriş");
+            alert.setContentText("Lütfen bir tam sayı girin.");
+            alert.showAndWait();
+
+            moldDistanceField.clear();
+        }
+    	
     }
     
     @FXML
