@@ -4,7 +4,7 @@ package Model.Motor;
 public class Motor {
 
 	public float kasnakOran;
-	public long oneMMStepcount;
+	public float oneMMStepcount;
 	public long stepCountPerRev;
 	
 	public long currentPosition;
@@ -18,7 +18,7 @@ public class Motor {
 	}
 	
 	public long grToStep(float hacim) {
-	
+		
 		return 0;
 	}
 	

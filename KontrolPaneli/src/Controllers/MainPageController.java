@@ -115,8 +115,8 @@ public class MainPageController implements Initializable{
 
     	String str = moldDistanceField.getText();
         try {
-        	long distance = Long.parseLong(str);
-        	long stepCount =  machine.getKalipMotor().oneMMStepcount * distance;
+        	float distance = Float.parseFloat(str);
+        	long stepCount = (long) (machine.getKalipMotor().oneMMStepcount * distance);
         	this.scm.sendString("KK " + stepCount);
 
         } catch (NumberFormatException ex) {
@@ -136,9 +136,9 @@ public class MainPageController implements Initializable{
     void moveKaliprRight(MouseEvent event) {
     	String str = moldDistanceField.getText();
         try {
-        	long distance = Long.parseLong(str);
-        	long stepCount =  machine.getKalipMotor().oneMMStepcount * distance;
-        	this.scm.sendString("KK " + stepCount);
+        	float distance = Float.parseFloat(str);
+        	long stepCount = (long) (machine.getKalipMotor().oneMMStepcount * distance);
+        	this.scm.sendString("KK " + -stepCount);
 
         } catch (NumberFormatException ex) {
 
