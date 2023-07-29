@@ -113,6 +113,15 @@ public class ProcessPageController implements Initializable{
 
     @FXML
     private TextField processNameField;
+    
+    @FXML
+    private Button retractionButton1;
+
+    @FXML
+    private TextField retractionField1;
+
+    @FXML
+    private Label retractionLabel;
 
     @FXML
     private Button updateProcess;
@@ -190,10 +199,11 @@ public class ProcessPageController implements Initializable{
     @FXML
     void setProcessKalMax(MouseEvent event) {
     	String str = kalipMaxField.getText();
-    	long max = Long.parseLong(str);
-    	
-    	SerialCommHandler.getInstance().sendString("PM " + machine.getKalipMotor().oneMMStepcount * max);
-    	process.setKalipAdim(machine.getKalipMotor().oneMMStepcount * max);
+    	float yeni = Float.parseFloat(str);
+    	long adim = (long)(machine.getKalipMotor().oneMMStepcount * yeni);
+    	SerialCommHandler.getInstance().sendString("PM " + adim);
+       	
+    	process.setKalipAdim((long)(machine.getKalipMotor().oneMMStepcount * yeni));
     	kalMaxLabel.setText(str);
     }
 
@@ -209,11 +219,12 @@ public class ProcessPageController implements Initializable{
     void setProcessPinLen(MouseEvent event) {
     	String str = pinLenghtField.getText();
     	
-    	long max = Long.parseLong(str);
+    	float yeni = Float.parseFloat(str);
+    	long adim = (long)(machine.getKalipMotor().oneMMStepcount * yeni);
     	
-    	SerialCommHandler.getInstance().sendString("PP " + machine.getKalipMotor().oneMMStepcount * max);
+    	SerialCommHandler.getInstance().sendString("PP " + adim);
     	
-    	process.setPinUzunluk(machine.getKalipMotor().oneMMStepcount * max);
+    	process.setPinUzunluk(adim);
     	
     	pinLenLabel.setText(str);
     }
@@ -246,6 +257,21 @@ public class ProcessPageController implements Initializable{
     	
     	
     	
+    }
+    
+    @FXML
+    void setProcessRetraction(MouseEvent event) {
+    	
+    	String str = retractionField1.getText();
+    	
+    	float yeni = Float.parseFloat(str);
+    	long adim = (long)(machine.getEnjeksiyonMotor().oneMMStepcount * yeni);
+    	
+    	SerialCommHandler.getInstance().sendString("PX " + adim);
+    	
+    	process.setRetruction(adim);
+    	
+    	retractionLabel.setText(str);
     }
 
     @FXML
