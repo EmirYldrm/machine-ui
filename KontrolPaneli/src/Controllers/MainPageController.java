@@ -117,7 +117,7 @@ public class MainPageController implements Initializable{
         try {
         	float distance = Float.parseFloat(str);
         	long stepCount = (long) (machine.getKalipMotor().oneMMStepcount * distance);
-        	this.scm.sendString("KK " + stepCount);
+        	this.scm.sendString("KK " + -stepCount);
 
         } catch (NumberFormatException ex) {
 
@@ -138,7 +138,7 @@ public class MainPageController implements Initializable{
         try {
         	float distance = Float.parseFloat(str);
         	long stepCount = (long) (machine.getKalipMotor().oneMMStepcount * distance);
-        	this.scm.sendString("KK " + -stepCount);
+        	this.scm.sendString("KK " + stepCount);
 
         } catch (NumberFormatException ex) {
 

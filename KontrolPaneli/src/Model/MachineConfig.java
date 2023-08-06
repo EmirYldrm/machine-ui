@@ -11,10 +11,11 @@ public class MachineConfig {
 	public static final float helezonKasnakOran = 4.0f;
 	public static final float kalipKasnakOran = 7.23f;
 	public static final float StepPerMM = 409.6f;
-	public static final long stepPerRev  = 400;
+	public static final long stepPerRev  = 800;
+	public static final long stepPerRevInjection  = 800;
 	
 	public static long calculateInjectionStep(float value) {
-		return 	(long) enjeksiyonKasnakOrani * stepPerRev / milHatve;
+		return 	(long) enjeksiyonKasnakOrani * stepPerRevInjection / milHatve;
 		
 	}
 	public static long calculateMoldStep(float value) {

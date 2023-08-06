@@ -249,6 +249,7 @@ public class ProcessPageController implements Initializable{
     	long max = Long.parseLong(str);
     	
     	long enjLen = max / ((long)(Math.PI * 156.25));
+    	System.out.println(machine.getEnjeksiyonMotor().oneMMStepcount);
     	SerialCommHandler.getInstance().sendString("PH " + (enjLen * machine.getEnjeksiyonMotor().oneMMStepcount));
     	
     	process.setParcaHacim(enjLen * machine.getEnjeksiyonMotor().oneMMStepcount);
