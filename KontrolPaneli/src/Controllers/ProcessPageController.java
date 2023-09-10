@@ -280,6 +280,7 @@ public class ProcessPageController implements Initializable{
     	machine.setCurrentProcess(process);
     }
     
+    
     public void setCurrentProcess() {
     	
     	this.hacimLabel.setText(String.valueOf(process.getParcaHacim()));
@@ -292,14 +293,17 @@ public class ProcessPageController implements Initializable{
     	this.kalMaxLabel.setText(String.valueOf(process.getKalipAdim()));
     	this.isimLabel.setText(String.valueOf(process.getIsim()));
     	this.pinLenLabel.setText(String.valueOf(process.getPinUzunluk()));
+    	this.retractionLabel.setText(String.valueOf(process.getRetruction()));
     	
     }
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// Controller için lazım olan değişkenler 
 		this.scm = SerialCommHandler.getInstance();
 		this.comHandler = scm.getComHandler();
 		this.machine  = MachineInfo.getInstance();
+		
 		if(machine.getCurrentProcess() == null) {
 			process = new Process();
 		}
