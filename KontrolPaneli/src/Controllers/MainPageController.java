@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import com.fazecast.jSerialComm.SerialPort;
 
+import Model.ClockModel;
 import Model.MachineInfo;
 import Serial.SerialCommHandler;
 import Serial.Commands.*;
@@ -28,77 +29,63 @@ public class MainPageController implements Initializable{
 	private MachineInfo machine;
 	private CommandHandler comHandler;
 	private SerialCommHandler scm;
+	private ClockModel clock;
 	/////////////////////////////////////////////////////////////////////////////////////////////////
-	@FXML
-	private Label arkaLabel;
 	
-	@FXML
-	private TextField arkaTempField;
-	
-	@FXML
-	private Button arkaTempSetButton;
-	
-	@FXML
-	private Label Label;
-	
-	@FXML
-	private Button enjeksiyonHomeButton;
-	
-	@FXML
-	private Label enjeksiyonKonumLabel;
-	
-	@FXML
-	private Button kalipHomeButton;
-	
-	@FXML
-	private Label kalipKonumLabel;
-	
-	@FXML
-	private Button kalipLeftButton;
-	
-	@FXML
-	private Label machineStatusLabel;
-	
-    @FXML
-    private TextField moldDistanceField;
-	
-	@FXML
-	private Button moveKalipMotor;
-	
-	@FXML
-	private Label nozzleLabel;
-	
-	@FXML
-	private TextField nozzleTempField;
-	
-	@FXML
-	private Button nozzleTempSetButton;
-	
-	@FXML
-	private Label ortaLabel;
-	
-	@FXML
-	private TextField ortaTempField;
-	
-	@FXML
-	private Button ortaTempSetButton;
-	
-	@FXML
-	private ProgressBar processBar;
-	
-	@FXML
-	private Button processBeginButton;
-	
-	@FXML
-	private Button processSettingButton;
-	
-	@FXML
-	private TextArea testField;
 
     @FXML
-    void sendNozzleTemperature(MouseEvent event) {
-		comHandler.executeCommand("S1 " + this.nozzleTempField.getText());
-    }
+    private Label clockLabel;
+    
+    @FXML
+    private Label currentProcessLabel;
+
+    @FXML
+    private TextField enjeksiyonDistanceField;
+
+    @FXML
+    private Button enjeksiyonHomeButton;
+
+    @FXML
+    private Label enjeksiyonKonumLabel;
+
+    @FXML
+    private Button enjeksiyonLeftButton;
+
+    @FXML
+    private Button kalipHomeButton;
+
+    @FXML
+    private Label kalipKonumLabel;
+
+    @FXML
+    private Button kalipLeftButton;
+
+    @FXML
+    private Label machineStatusLabel;
+
+    @FXML
+    private TextField moldDistanceField;
+
+    @FXML
+    private Button moveEnjeksiyonMotor;
+
+    @FXML
+    private Button moveKalipMotor;
+
+    @FXML
+    private ProgressBar processBar;
+
+    @FXML
+    private Button processBeginButton;
+
+    @FXML
+    private Button processSettingButton;
+
+    @FXML
+    private TextArea testField;
+    
+
+
     
     @FXML
     void enjeksiyonHome(MouseEvent event) {
@@ -108,6 +95,48 @@ public class MainPageController implements Initializable{
     @FXML
     void homeKalipMotor(MouseEvent event) {
     	this.scm.sendString("K0");
+    }
+
+    @FXML
+    void moveEnjeksiyonLeft(MouseEvent event) {
+    	String str = enjeksiyonDistanceField.getText();
+        try {
+        	float distance = Float.parseFloat(str);
+        	long stepCount = (long) (machine.getEnjeksiyonMotor().oneMMStepcount * distance);
+        	this.scm.sendString("EE " + -stepCount);
+        	System.out.println(stepCount);
+
+        } catch (NumberFormatException ex) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Geçersiz Giriş");
+            alert.setContentText("Lütfen bir tam sayı girin.");
+            alert.showAndWait();
+
+            moldDistanceField.clear();
+        }
+    }
+
+    @FXML
+    void moveEnjeksiyonRight(MouseEvent event) {
+    	String str = enjeksiyonDistanceField.getText();
+        try {
+        	float distance = Float.parseFloat(str);
+        	long stepCount = (long) (machine.getEnjeksiyonMotor().oneMMStepcount * distance);
+        	this.scm.sendString("EE " + stepCount);
+        	System.out.println(stepCount);
+
+        } catch (NumberFormatException ex) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Hata");
+            alert.setHeaderText("Geçersiz Giriş");
+            alert.setContentText("Lütfen bir tam sayı girin.");
+            alert.showAndWait();
+
+            moldDistanceField.clear();
+        }
     }
 
     @FXML
@@ -180,10 +209,6 @@ public class MainPageController implements Initializable{
 		FloatProperty nozzleTemp = machine.getNozzleTempProperty();
 		FloatProperty midTemp = machine.getMidTempProperty();
 		FloatProperty backTemp = machine.getBackTempProperty();
-		
-		nozzleLabel.textProperty().bind(nozzleTemp.asString());
-		ortaLabel.textProperty().bind(midTemp.asString());
-		arkaLabel.textProperty().bind(backTemp.asString());
     }
     
 	@Override
@@ -202,9 +227,14 @@ public class MainPageController implements Initializable{
 		FloatProperty midTemp = machine.getMidTempProperty();
 		FloatProperty backTemp = machine.getBackTempProperty();
 		
-		nozzleLabel.textProperty().bind(nozzleTemp.asString());
-		ortaLabel.textProperty().bind(midTemp.asString());
-		arkaLabel.textProperty().bind(backTemp.asString());
+		ClockModel clock = new ClockModel();
+		
+		 Bindings.bindBidirectional(
+	                clockLabel.textProperty(),
+	                clock.timeProperty()
+	     );
+		
+		clock.start();
 		
 	}
 

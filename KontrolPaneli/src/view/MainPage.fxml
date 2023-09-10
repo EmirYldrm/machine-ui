@@ -11,40 +11,40 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="800.0" style="-fx-background-color: #F9F7F7;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="800.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
-      <AnchorPane layoutX="405.0" layoutY="4.0" prefHeight="212.0" prefWidth="390.0" style="-fx-background-color: #DBE2EF;">
+      <AnchorPane layoutX="405.0" layoutY="6.0" prefHeight="415.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
-            <Pane prefHeight="36.0" prefWidth="390.0" style="-fx-background-color: #3F72AF;">
+            <Pane prefHeight="27.0" prefWidth="390.0" style="-fx-background-color: #2d2d30;">
                <children>
-                  <Label layoutX="14.0" layoutY="7.0" prefHeight="23.0" prefWidth="87.0" text="HAREKET" textFill="#d8daf0">
+                  <Label layoutX="14.0" layoutY="3.0" prefHeight="23.0" prefWidth="87.0" text="HAREKET" textFill="#d8daf0">
                      <font>
                         <Font name="Source Code Pro Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label alignment="CENTER" layoutX="19.0" layoutY="44.0" prefHeight="36.0" prefWidth="98.0" text="ENJEKSİYON">
+            <Label alignment="CENTER" layoutX="41.0" layoutY="44.0" prefHeight="36.0" prefWidth="105.0" text="ENJEKSİYON" textFill="WHITE">
                <font>
-                  <Font name="Source Code Pro" size="15.0" />
+                  <Font name="Source Code Pro" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="enjeksiyonKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="15.0" layoutY="83.0" prefHeight="36.0" prefWidth="105.0" text="?.??">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" layoutX="230.0" layoutY="44.0" prefHeight="36.0" prefWidth="66.0" text="KALIP">
-               <font>
-                  <Font name="Source Code Pro" size="15.0" />
-               </font>
-            </Label>
-            <Label fx:id="kalipKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="214.0" layoutY="83.0" prefHeight="36.0" prefWidth="98.0" text="?.??">
+            <Label fx:id="enjeksiyonKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="44.0" prefHeight="36.0" prefWidth="105.0" text="?.??" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button fx:id="enjeksiyonHomeButton" layoutX="42.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#enjeksiyonHome" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
+            <Label alignment="CENTER" layoutX="40.0" layoutY="226.0" prefHeight="36.0" prefWidth="66.0" text="KALIP" textFill="WHITE">
+               <font>
+                  <Font name="Source Code Pro" size="17.0" />
+               </font>
+            </Label>
+            <Label fx:id="kalipKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="226.0" prefHeight="36.0" prefWidth="98.0" text="?.??" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="enjeksiyonHomeButton" layoutX="125.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#enjeksiyonHome" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="42.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -52,7 +52,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="kalipHomeButton" layoutX="237.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#homeKalipMotor" opacity="0.98" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
+            <Button fx:id="kalipHomeButton" layoutX="127.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#homeKalipMotor" opacity="0.98" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="42.0" fitWidth="36.0" onMouseClicked="#homeKalipMotor" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -60,7 +60,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="moveKalipMotor" layoutX="304.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#moveKaliprRight" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
+            <Button fx:id="moveKalipMotor" layoutX="205.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#moveKaliprRight" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;" textFill="#00446f">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -68,7 +68,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="kalipLeftButton" layoutX="169.0" layoutY="135.0" mnemonicParsing="false" onMouseClicked="#moveKalipLeft" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
+            <Button fx:id="kalipLeftButton" layoutX="47.0" layoutY="282.0" mnemonicParsing="false" onMouseClicked="#moveKalipLeft" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -76,104 +76,86 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="moldDistanceField" alignment="CENTER" layoutX="230.0" layoutY="186.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="moldDistanceField" alignment="CENTER" layoutX="286.0" layoutY="291.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="enjeksiyonDistanceField" alignment="CENTER" layoutX="288.0" layoutY="111.0" prefHeight="25.0" prefWidth="66.0" />
+            <Button fx:id="enjeksiyonLeftButton" layoutX="46.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#moveEnjeksiyonLeft" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Desktop/Akil/icon/download.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="moveEnjeksiyonMotor" layoutX="204.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#moveEnjeksiyonRight" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;" textFill="#033861">
+               <graphic>
+                  <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Desktop/Akil/icon/download%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Pane layoutX="262.0" layoutY="379.0" prefHeight="36.0" prefWidth="128.0" style="-fx-background-color: #1E1E1E;">
+               <children>
+                  <Label fx:id="clockLabel" alignment="CENTER" layoutX="-4.0" prefHeight="36.0" prefWidth="175.0" textFill="WHITE">
+                     <font>
+                        <Font name="Source Code Pro" size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="6.0" layoutY="4.0" prefHeight="420.0" prefWidth="390.0" style="-fx-background-color: #DBE2EF;">
+      <AnchorPane layoutX="6.0" layoutY="6.0" prefHeight="155.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
-            <Pane prefHeight="36.0" prefWidth="390.0" style="-fx-background-color: #3F72AF;">
+            <Pane prefHeight="27.0" prefWidth="390.0" style="-fx-background-color: #2d2d30;">
                <children>
-                  <Label layoutX="11.0" layoutY="9.0" prefHeight="23.0" prefWidth="135.0" text="MAKİNE BİLGİLERİ" textFill="#d8daf0">
+                  <Label layoutX="11.0" layoutY="3.0" prefHeight="23.0" prefWidth="135.0" text="MAKİNE BİLGİLERİ" textFill="#d8daf0">
                      <font>
                         <Font name="Source Code Pro Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="48.0" layoutY="72.0" text="MAKİNE DURUM  :">
+            <Label layoutX="14.0" layoutY="45.0" text="Makine Durum :" textFill="WHITE">
                <font>
                   <Font name="Source Code Pro" size="18.0" />
                </font></Label>
-            <Label fx:id="machineStatusLabel" alignment="CENTER" layoutX="261.0" layoutY="69.0" prefHeight="30.0" prefWidth="87.0" text="?">
+            <Label fx:id="machineStatusLabel" alignment="CENTER" layoutX="254.0" layoutY="42.0" prefHeight="30.0" prefWidth="87.0" text="?" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font></Label>
-            <Label fx:id="nozzleLabel" alignment="CENTER" layoutX="43.0" layoutY="274.0" prefHeight="36.0" prefWidth="87.0" text="0.00" underline="true">
+            <TextArea fx:id="testField" layoutX="6.0" layoutY="87.0" prefHeight="52.0" prefWidth="163.0" />
+            <Button fx:id="processSettingButton1" layoutX="245.0" layoutY="91.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" style="-fx-background-color: #e19393;" text="RESET" textFill="#d31c1c">
                <font>
-                  <Font name="Source Code Pro Bold" size="19.0" />
+                  <Font name="Arial Bold" size="19.0" />
                </font>
-            </Label>
-            <Label fx:id="ortaLabel" alignment="CENTER" layoutX="160.0" layoutY="278.0" prefHeight="36.0" prefWidth="87.0" text="0.00" underline="true">
-               <font>
-                  <Font name="Source Code Pro Bold" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="59.0" layoutY="235.0" text="NOZZLE">
-               <font>
-                  <Font name="Source Code Pro Bold" size="15.0" />
-               </font>
-            </Label>
-            <Label layoutX="308.0" layoutY="234.0" text="ARKA">
-               <font>
-                  <Font name="Source Code Pro Bold" size="15.0" />
-               </font>
-            </Label>
-            <TextField fx:id="nozzleTempField" layoutX="45.0" layoutY="323.0" prefHeight="25.0" prefWidth="75.0" promptText="Sıcaklık giriniz" />
-            <TextField fx:id="ortaTempField" layoutX="166.0" layoutY="323.0" prefHeight="25.0" prefWidth="75.0" promptText="Sıcaklık giriniz" />
-            <TextField fx:id="arkaTempField" layoutX="287.0" layoutY="322.0" prefHeight="25.0" prefWidth="75.0" promptText="Sıcaklık giriniz" />
-            <Button fx:id="nozzleTempSetButton" layoutX="65.0" layoutY="367.0" mnemonicParsing="false" onMouseClicked="#sendNozzleTemperature" text="SET" />
-            <Button fx:id="arkaTempSetButton" layoutX="306.0" layoutY="366.0" mnemonicParsing="false" text="SET" />
-            <Label fx:id="arkaLabel" alignment="CENTER" layoutX="283.0" layoutY="277.0" prefHeight="36.0" prefWidth="87.0" text="0.00" underline="true">
-               <font>
-                  <Font name="Source Code Pro Bold" size="19.0" />
-               </font>
-            </Label>
-            <Label layoutX="187.0" layoutY="235.0" text="ORTA">
-               <font>
-                  <Font name="Source Code Pro Bold" size="15.0" />
-               </font>
-            </Label>
-            <Button fx:id="ortaTempSetButton" layoutX="186.0" layoutY="367.0" mnemonicParsing="false" text="SET" />
-            <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="6.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Desktop/Akil/icon/icons8-heat-48.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="136.0" layoutY="280.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Desktop/Akil/icon/icons8-heat-48.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="30.0" fitWidth="35.0" layoutX="261.0" layoutY="281.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../Desktop/Akil/icon/icons8-heat-48.png" />
-               </image>
-            </ImageView>
-            <TextArea fx:id="testField" layoutX="6.0" layoutY="99.0" prefHeight="136.0" prefWidth="371.0" />
+            </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="405.0" layoutY="221.0" prefHeight="201.0" prefWidth="390.0" style="-fx-background-color: #DBE2EF;">
+      <AnchorPane layoutX="6.0" layoutY="172.0" prefHeight="251.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
-            <Pane prefHeight="36.0" prefWidth="390.0" style="-fx-background-color: #3F72AF;">
+            <Pane prefHeight="27.0" prefWidth="390.0" style="-fx-background-color: #2d2d30;">
                <children>
-                  <Label layoutX="14.0" layoutY="11.0" prefHeight="23.0" prefWidth="128.0" text="ÜRETİM DURUMU" textFill="#d8daf0">
+                  <Label layoutX="14.0" layoutY="1.0" prefHeight="23.0" prefWidth="128.0" text="ÜRETİM DURUMU" textFill="#d8daf0">
                      <font>
                         <Font name="Source Code Pro Bold" size="14.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Label layoutX="23.0" layoutY="53.0" prefHeight="27.0" prefWidth="151.0" text="Process  : ">
+            <Label layoutX="21.0" layoutY="40.0" prefHeight="27.0" prefWidth="151.0" text="Process  : " textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <Label fx:id="currentProcessLabel" layoutX="172.0" layoutY="53.0" prefHeight="20.0" prefWidth="128.0" text="...">
+            <Label fx:id="currentProcessLabel" layoutX="175.0" layoutY="40.0" prefHeight="27.0" prefWidth="202.0" text="Lütfen bir process seçiniz" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="13.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="processBar" layoutX="14.0" layoutY="101.0" prefHeight="18.0" prefWidth="355.0" progress="0.0" />
-            <Button fx:id="processBeginButton" layoutX="14.0" layoutY="141.0" mnemonicParsing="false" onMouseClicked="#startProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
+            <ProgressBar fx:id="processBar" layoutX="12.0" layoutY="80.0" prefHeight="17.0" prefWidth="366.0" progress="0.0" />
+            <Button fx:id="processBeginButton" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#startProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #48c65d;">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -181,7 +163,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="159.0" layoutY="141.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
+            <Button layoutX="118.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #e4e44e;" textFill="#e4e44e">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -189,7 +171,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="303.0" layoutY="141.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
+            <Button layoutX="219.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #ee3434;" textFill="#ee3434">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -197,7 +179,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="processSettingButton" layoutX="300.0" layoutY="40.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
+            <Button fx:id="processSettingButton" layoutX="310.0" layoutY="192.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -205,6 +187,21 @@
                      </image>
                   </ImageView>
                </graphic></Button>
+            <Label fx:id="currentProcessLabel1" layoutX="310.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="/" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentProcessLabel11" layoutX="343.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="?" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="currentProcessLabel12" layoutX="276.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="0" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <Label layoutX="24.0" layoutY="58.0" />
