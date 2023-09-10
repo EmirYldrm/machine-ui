@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 
 import Model.MachineInfo;
 import Serial.SerialCommHandler;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,6 +79,20 @@ public class ConnectionPageController implements Initializable{
 			scm.closePort();
 		}
     }
+    
+
+    @FXML
+    void keyboard_deneme(MouseEvent event) {
+    	
+    		
+         // Show the touch keyboard when the TextField is clicked
+         Platform.runLater(() -> {
+             if (!commandField.isFocused()) {
+            	 commandField.requestFocus();
+             }
+         });
+         
+    }
 
     @FXML
     void sendCommand(MouseEvent event) {
@@ -119,7 +134,7 @@ public class ConnectionPageController implements Initializable{
 
 		// Visibility settings
 		messageArea.setEditable(false);
-		commandField.setVisible(false);
+		commandField.setVisible(true);
 		
 	}
 

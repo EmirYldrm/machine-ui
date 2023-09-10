@@ -18,7 +18,7 @@
             <Label layoutX="101.0" layoutY="76.0" text="?" />
             <ComboBox fx:id="portBox" layoutX="340.0" layoutY="72.0" prefWidth="150.0" promptText="PORT SEÇİNİZ" />
             <Button fx:id="baglanButton" layoutX="238.0" layoutY="72.0" mnemonicParsing="false" onMouseClicked="#connectToBoard" prefHeight="25.0" prefWidth="71.0" text="BAĞLAN" />
-            <TextField fx:id="commandField" layoutX="26.0" layoutY="318.0" prefHeight="25.0" prefWidth="374.0" />
+            <TextField fx:id="commandField" layoutX="26.0" layoutY="318.0" onMouseClicked="#keyboard_deneme" prefHeight="25.0" prefWidth="374.0" />
             <Pane layoutX="1.0" prefHeight="37.0" prefWidth="516.0" style="-fx-background-color: #19A7CE;">
                <children>
                   <Label layoutX="14.0" layoutY="5.0" prefHeight="32.0" prefWidth="157.0" text="CONNECTION">
