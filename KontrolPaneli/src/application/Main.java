@@ -1,5 +1,9 @@
 package application;
 	
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
+
 import com.fazecast.jSerialComm.SerialPort;
 
 import Controllers.ConnectionPageController;
@@ -39,55 +43,102 @@ import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 
 
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-//		try {
-//			Parent root = FXMLLoader.load(getClass().getResource("/view/SideBar.fxml"));
-//            Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			
-//			primaryStage.setScene(scene);
-//			primaryStage.setTitle("Enjeksiyon Makinesi Kontrol Paneli");
-//			//primaryStage.initStyle(StageStyle.TRANSPARENT); // Title bar'ı transparant yapiyor.
-//			primaryStage.show();
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//		}
+
 		
 		 try {
-			   // Seri haberleşme başlatılıyor.
-			 	SerialCommHandler serialCommunicationHandler  = initSerialComm();
-			 	
-			 	MachineInfo machine = MachineInfo.getInstance();
-			 	machine.setEnjeksiyonMotor(new EnjeksiyonMotor());
-			 	machine.setKalipMotor(new KalipMotor());
-			 	machine.setHeleoznMotor(new HelezonMotor());
-			 	
-			 	// Side Bar seri haberleşmesi instance ekleniyor.
-		        FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/view/SideBar.fxml"));
-		        Parent sidebarRoot = sidebarLoader.load();
-		        SideBarController sidebarController = sidebarLoader.getController();
-		        sidebarController.setSerialCommunicationHandler(serialCommunicationHandler);
-		        sidebarController.setMachineInfo(machine);
+			 	/*FXMLLoader videoPageLoader = new FXMLLoader(getClass().getResource("/view/VideoPage.fxml"));
+		        Parent videoPageRoot = videoPageLoader.load();
+		        Scene scene1 = new Scene(videoPageRoot);
+		        primaryStage.setScene(scene1);
+		        primaryStage.show();*/
+			// Create a Media object with the path to your video file
+			 	File file = new File("../KontrolPaneli/src/Assets/icons/vids/akil_intro.mp4");	
+				Media media = new Media(file.toURI().toString());
+
+		        // Create a MediaPlayer with the Media object
+		        MediaPlayer mediaPlayer = new MediaPlayer(media);
+
+		        // Create a MediaView and bind it to the MediaPlayer
+		        MediaView mediaView = new MediaView(mediaPlayer);
+
+		        // Set the size of the MediaView to fit your application window
+		        StackPane stackPane = new StackPane();
+		        stackPane.getChildren().add(mediaView);
+		        stackPane.setStyle("-fx-background-color: black;");
 		        
-		       /* FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
-		        Parent mainparent = sidebarLoader.load();
-		        SideBarController mainController = sidebarLoader.getController();
-		        mainController.setSerialCommunicationHandler(serialCommunicationHandler);
-		        mainController.setMachineInfo(machine);
-		       */
+		        mediaView.setFitWidth(800);
+		        mediaView.setFitHeight(480);
+
+		        // Create the scene and add the MediaView to it
+		        Scene scene1 = new Scene(stackPane);
+
+		        // Set the scene to the primary stage
+		        primaryStage.setScene(scene1);
+		    
+
+		        mediaPlayer.play();
+		        
+		        mediaPlayer.setOnEndOfMedia(() -> {
+		            // Close the primaryStage
+		            
+
+		            // Now, you can continue with the rest of your application
+		            // Add your code for initializing and displaying the main part of the application here
+
+					 
+			        
+					   // Seri haberleşme başlatılıyor.
+					 	SerialCommHandler serialCommunicationHandler  = initSerialComm();
+					 	
+					 	MachineInfo machine = MachineInfo.getInstance();
+					 	machine.setEnjeksiyonMotor(new EnjeksiyonMotor());
+					 	machine.setKalipMotor(new KalipMotor());
+					 	machine.setHeleoznMotor(new HelezonMotor());
+					 	
+					 	// Side Bar seri haberleşmesi instance ekleniyor.
+				        FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/view/SideBar.fxml"));
+				        Parent sidebarRoot = null;
+						try {
+							sidebarRoot = sidebarLoader.load();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				        SideBarController sidebarController = sidebarLoader.getController();
+				        sidebarController.setSerialCommunicationHandler(serialCommunicationHandler);
+				        sidebarController.setMachineInfo(machine);
+				        
+				       /* FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
+				        Parent mainparent = sidebarLoader.load();
+				        SideBarController mainController = sidebarLoader.getController();
+				        mainController.setSerialCommunicationHandler(serialCommunicationHandler);
+				        mainController.setMachineInfo(machine);
+				       */
 
 
+				        Scene scene = new Scene(sidebarRoot);
+				        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-		        Scene scene = new Scene(sidebarRoot);
-		        scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+				        primaryStage.setScene(scene);
+				        primaryStage.setTitle("Enjeksiyon Makinesi Kontrol Paneli");
+				        primaryStage.show();
+				        
+		        });
 
-		        primaryStage.setScene(scene);
-		        primaryStage.setTitle("Enjeksiyon Makinesi Kontrol Paneli");
 		        primaryStage.show();
+
+		        
+			 
+		        
 		        
 		    } catch (Exception e) {
 		        e.printStackTrace();
