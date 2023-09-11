@@ -52,25 +52,7 @@ public class SideBarController implements Initializable{
     @FXML
     void mainPage(MouseEvent event) {
 		loadPage("/view/MainPage.fxml");
-		
-		 // Main page  seri haberleşme instance ekleniyor
-        /*FXMLLoader mainPageLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
-        try {
-			Parent mainRoot = mainPageLoader.load();
-		
-	        MainPageController mainController = mainPageLoader.getController();
-	        
-	        System.out.println("scm = " + ((scm == null) ? false : true));
-	        mainController.setSerialCommunicationHandler(this.scm);
-	        mainController.setMachineInfo(this.machine);
-	        mainController.setComHandler(this.scm.getComHandler());
-	        
-	        stackPane.getChildren().setAll(mainRoot);
-	        
-        } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+
     }
 
     @FXML

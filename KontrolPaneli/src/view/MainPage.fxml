@@ -96,9 +96,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Pane layoutX="262.0" layoutY="379.0" prefHeight="36.0" prefWidth="128.0" style="-fx-background-color: #1E1E1E;">
+            <Pane layoutX="292.0" layoutY="379.0" prefHeight="36.0" prefWidth="98.0" style="-fx-background-color: #1E1E1E;">
                <children>
-                  <Label fx:id="clockLabel" alignment="CENTER" layoutX="-4.0" prefHeight="36.0" prefWidth="175.0" textFill="WHITE">
+                  <Label fx:id="clockLabel" alignment="CENTER" layoutX="-4.0" prefHeight="36.0" prefWidth="98.0" textFill="WHITE">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>

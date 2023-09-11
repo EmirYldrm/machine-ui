@@ -2,7 +2,6 @@ package application;
 	
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
 
 import com.fazecast.jSerialComm.SerialPort;
 
@@ -39,10 +38,8 @@ import Serial.Commands.WaitProcessCommand;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -55,12 +52,13 @@ public class Main extends Application {
 
 		
 		 try {
-			 	/*FXMLLoader videoPageLoader = new FXMLLoader(getClass().getResource("/view/VideoPage.fxml"));
+			 	FXMLLoader videoPageLoader = new FXMLLoader(getClass().getResource("/view/VideoPage.fxml"));
 		        Parent videoPageRoot = videoPageLoader.load();
-		        Scene scene1 = new Scene(videoPageRoot);
-		        primaryStage.setScene(scene1);
-		        primaryStage.show();*/
-			// Create a Media object with the path to your video file
+		        Scene scene12 = new Scene(videoPageRoot);
+		        primaryStage.setScene(scene12);
+		        primaryStage.show();
+		        
+			/*// Create a Media object with the path to your video file
 			 	File file = new File("../KontrolPaneli/src/Assets/icons/vids/akil_intro.mp4");	
 				Media media = new Media(file.toURI().toString());
 
@@ -88,7 +86,7 @@ public class Main extends Application {
 		        mediaPlayer.play();
 		        
 		        mediaPlayer.setOnEndOfMedia(() -> {
-		            // Close the primaryStage
+		            
 		            
 
 		            // Now, you can continue with the rest of your application
@@ -116,13 +114,7 @@ public class Main extends Application {
 				        SideBarController sidebarController = sidebarLoader.getController();
 				        sidebarController.setSerialCommunicationHandler(serialCommunicationHandler);
 				        sidebarController.setMachineInfo(machine);
-				        
-				       /* FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
-				        Parent mainparent = sidebarLoader.load();
-				        SideBarController mainController = sidebarLoader.getController();
-				        mainController.setSerialCommunicationHandler(serialCommunicationHandler);
-				        mainController.setMachineInfo(machine);
-				       */
+				       
 
 
 				        Scene scene = new Scene(sidebarRoot);
@@ -135,14 +127,11 @@ public class Main extends Application {
 		        });
 
 		        primaryStage.show();
-
-		        
-			 
-		        
-		        
+*/
 		    } catch (Exception e) {
 		        e.printStackTrace();
 		    }
+		 
 	}
 	
 	public static void main(String[] args) {
