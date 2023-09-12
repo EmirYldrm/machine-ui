@@ -15,6 +15,7 @@ public class CommandHandler {
     public void executeCommand(String commandString) {
     	
     	//System.out.println(commandString + "  comhandler executecomand");
+    	
     	// Eger komut parametreli 
     	if(commandString.contains(" ") == true) {
     		
