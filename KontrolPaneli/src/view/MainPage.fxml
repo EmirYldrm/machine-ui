@@ -127,15 +127,23 @@
                   <Font size="20.0" />
                </font></Label>
             <TextArea fx:id="testField" layoutX="6.0" layoutY="87.0" prefHeight="52.0" prefWidth="163.0" />
-            <Button fx:id="processSettingButton1" layoutX="245.0" layoutY="91.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="105.0" style="-fx-background-color: #e19393;" text="RESET" textFill="#d31c1c">
+            <Button fx:id="resetButton" layoutX="245.0" layoutY="91.0" mnemonicParsing="false" onMouseClicked="#resetBoards" prefHeight="44.0" prefWidth="105.0" style="-fx-background-color: #e19393;" text="RESET" textFill="#d31c1c">
                <font>
                   <Font name="Arial Bold" size="19.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="6.0" layoutY="172.0" prefHeight="251.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
+      <AnchorPane layoutX="6.0" layoutY="170.0" prefHeight="251.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
+            <Button fx:id="pauseProcessButton" layoutX="118.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#pauseProject" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #e4e44e;" textFill="#e4e44e">
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Desktop/Akil/icon/download%20(4).png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Pane prefHeight="27.0" prefWidth="390.0" style="-fx-background-color: #2d2d30;">
                <children>
                   <Label layoutX="14.0" layoutY="1.0" prefHeight="23.0" prefWidth="128.0" text="ÜRETİM DURUMU" textFill="#d8daf0">
@@ -154,7 +162,7 @@
                   <Font size="13.0" />
                </font>
             </Label>
-            <ProgressBar fx:id="processBar" layoutX="12.0" layoutY="80.0" prefHeight="17.0" prefWidth="366.0" progress="0.0" />
+            <ProgressBar fx:id="processBar" layoutX="12.0" layoutY="89.0" prefHeight="11.0" prefWidth="366.0" progress="0.0" />
             <Button fx:id="processBeginButton" layoutX="14.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#startProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #48c65d;">
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -163,15 +171,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button layoutX="118.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #e4e44e;" textFill="#e4e44e">
-               <graphic>
-                  <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(4).png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button layoutX="219.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #ee3434;" textFill="#ee3434">
+            <Button fx:id="cancelProecssButton" layoutX="219.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#cancelProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #ee3434;" textFill="#ee3434">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -179,7 +179,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="processSettingButton" layoutX="310.0" layoutY="192.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
+            <Button fx:id="processSettingButton" layoutX="310.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#goToProcessPage" prefHeight="44.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -187,17 +187,17 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Label fx:id="currentProcessLabel1" layoutX="310.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="/" textFill="WHITE">
+            <Label fx:id="currentProcessLabel1" layoutX="310.0" layoutY="126.0" prefHeight="27.0" prefWidth="6.0" text="/" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="currentProcessLabel11" layoutX="343.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="?" textFill="WHITE">
+            <Label fx:id="targetProductCountLabel" layoutX="329.0" layoutY="126.0" prefHeight="27.0" prefWidth="52.0" text="?" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="currentProcessLabel12" layoutX="276.0" layoutY="126.0" prefHeight="27.0" prefWidth="18.0" text="0" textFill="WHITE">
+            <Label fx:id="currentProductCountLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="242.0" layoutY="126.0" prefHeight="27.0" prefWidth="52.0" text="0" textFill="WHITE">
                <font>
                   <Font size="18.0" />
                </font>
