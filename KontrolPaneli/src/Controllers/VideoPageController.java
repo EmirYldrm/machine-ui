@@ -8,6 +8,8 @@ import java.util.ResourceBundle;
 import com.fazecast.jSerialComm.SerialPort;
 
 import Model.MachineInfo;
+import Model.Process;
+import Model.ObjectDeserializer;
 import Model.Motor.EnjeksiyonMotor;
 import Model.Motor.HelezonMotor;
 import Model.Motor.KalipMotor;
@@ -15,6 +17,7 @@ import Serial.SerialCommHandler;
 import Serial.Commands.BeginProcessCommand;
 import Serial.Commands.CancelProcessCommand;
 import Serial.Commands.CommandHandler;
+import Serial.Commands.ContinueProcessCommand;
 import Serial.Commands.GetBackTempCommand;
 import Serial.Commands.GetMidTempCommand;
 import Serial.Commands.GetNozzleTempCommand;
@@ -34,6 +37,8 @@ import Serial.Commands.SetProcessPinLengthCommand;
 import Serial.Commands.SetProcessRateCommand;
 import Serial.Commands.SetProcessVolumeCommand;
 import Serial.Commands.WaitProcessCommand;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -74,8 +79,6 @@ public class VideoPageController  implements Initializable{
 		
 		mediaPlayer.setOnEndOfMedia(() -> {
             
-            
-
             // Now, you can continue with the rest of your application
             // Add your code for initializing and displaying the main part of the application here
 
@@ -88,6 +91,23 @@ public class VideoPageController  implements Initializable{
 			 	machine.setEnjeksiyonMotor(new EnjeksiyonMotor());
 			 	machine.setKalipMotor(new KalipMotor());
 			 	machine.setHeleoznMotor(new HelezonMotor());
+			 	
+			 	ObjectDeserializer deserializer = new ObjectDeserializer() ;
+			 	
+			 	try {
+			 		
+					Process process = (Process)deserializer.deserializeObject("../KontrolPaneli/src/Assets/icons/vids/process.akl");
+					machine.setCurrentProcess(process);
+					process.setParcaSayisiProperty(new SimpleIntegerProperty());
+					process.setHedefSayiProperty(new SimpleIntegerProperty(process.getHedefSayi()));
+					System.out.println(process.getIsim());
+					
+				} catch (ClassNotFoundException | IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					System.out.println("deserializer sikintisi");
+				}
+			 	
 			 	
 			 	// Side Bar seri haberleşmesi instance ekleniyor.
 		        FXMLLoader sidebarLoader = new FXMLLoader(getClass().getResource("/view/SideBar.fxml"));
@@ -114,6 +134,7 @@ public class VideoPageController  implements Initializable{
 		String comPortName = "";
 		CommandHandler comHandler;
 		SerialCommHandler scm;
+		
 		
 		// kart aranıyor...
 		if(SerialPort.getCommPorts() != null) {
@@ -145,6 +166,7 @@ public class VideoPageController  implements Initializable{
 		comHandler.registerCommand("B", new BeginProcessCommand());
 		comHandler.registerCommand("W", new WaitProcessCommand());
 		comHandler.registerCommand("C", new CancelProcessCommand());
+		comHandler.registerCommand("D", new ContinueProcessCommand());
 		
 		comHandler.registerCommand("PH", new SetProcessVolumeCommand());
 		comHandler.registerCommand("PU", new SetProcessPartCountCommand());
@@ -170,10 +192,10 @@ public class VideoPageController  implements Initializable{
 		
 		if(conn == false) {
 			 Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("ERROR!");
-            alert.setHeaderText("BAĞLANTI SAĞLANAMADI, LÜTFEN RESETLEYİN!!");
-            alert.setContentText("Resetleme işe yaramıyorsa teknik destek için bize ulaşın.");
-            alert.showAndWait();
+			 alert.setTitle("ERROR!");
+			 alert.setHeaderText("BAĞLANTI SAĞLANAMADI, LÜTFEN RESETLEYİN!!");
+			 alert.setContentText("Resetleme işe yaramıyorsa teknik destek için bize ulaşın.");
+			 alert.showAndWait();
 		}
 		
 		// thread içeriinde çağırılacak comhandler ekleniyor.
