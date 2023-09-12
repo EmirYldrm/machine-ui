@@ -1,16 +1,25 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import Model.Motor.KalipMotor;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
-public class Process {
+public class Process implements Serializable{
 
 	private String isim;
 	
 	private Date tarih;
 
 	private int parcaSayisi = 0;
+	private transient IntegerProperty parcaSayisiProperty = new SimpleIntegerProperty();
+	private transient IntegerProperty hedefSayiProperty =  new SimpleIntegerProperty();
+	
+
+
+
 
 
 	private int hedefSayi;
@@ -49,21 +58,46 @@ public class Process {
 		this.tarih = tarih;
 	}
 	
-	public int getParcaSayisi() {
-		return parcaSayisi;
-	}
 
 	public void setParcaSayisi(int parcaSayisi) {
 		this.parcaSayisi = parcaSayisi;
 	}
+	
+	// parça sayisi bind için getter setter
+	public int getParcaSayisi() {
+		return parcaSayisiProperty.get();
+	}
+
+	public void setParcaSayisiProperty(int sayi) {
+		this.parcaSayisiProperty.set(sayi);
+		this.parcaSayisi = sayi;
+	}
+	
+	public IntegerProperty getParcaSayisiProperty() {
+		return parcaSayisiProperty;
+	}
+
+	public void setParcaSayisiProperty(IntegerProperty parcaSayisiProperty) {
+		this.parcaSayisiProperty = parcaSayisiProperty;
+	}
 
 
+	public IntegerProperty getHedefSayiProperty() {
+		return hedefSayiProperty;
+	}
+
+	public void setHedefSayiProperty(IntegerProperty hedefSayiProperty) {
+		this.hedefSayiProperty = hedefSayiProperty;
+	}
+	
 	public int getHedefSayi() {
-		return hedefSayi;
+		return this.hedefSayi;
+		
 	}
 
 	public void setHedefSayi(int hedefSayi) {
 		this.hedefSayi = hedefSayi;
+		this.hedefSayiProperty.set(hedefSayi);
 	}
 
 	public int getParcaDusurmeSayisi() {

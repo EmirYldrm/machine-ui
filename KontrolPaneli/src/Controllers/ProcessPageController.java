@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Model.MachineInfo;
+import Model.ObjectSerializer;
 import Model.Process;
 import Serial.SerialCommHandler;
 import Serial.Commands.CommandHandler;
@@ -278,6 +279,15 @@ public class ProcessPageController implements Initializable{
     @FXML
     void updateTheProject(MouseEvent event) {
     	machine.setCurrentProcess(process);
+    	ObjectSerializer serializer = new ObjectSerializer();
+    	try {
+			serializer.serializeObject("../KontrolPaneli/src/Assets/icons/vids/process.akl", this.process);
+			System.out.println(process.getParcaDusurmeSayisi());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("serializer sikintisi");
+		}
     }
     
     
@@ -306,6 +316,7 @@ public class ProcessPageController implements Initializable{
 		
 		if(machine.getCurrentProcess() == null) {
 			process = new Process();
+			System.out.println("çünkü null");
 		}
 		else {
 			this.process = machine.getCurrentProcess();
