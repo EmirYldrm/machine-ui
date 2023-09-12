@@ -7,10 +7,13 @@ import com.fazecast.jSerialComm.SerialPort;
 
 import Model.ClockModel;
 import Model.MachineInfo;
+import Model.Process;
 import Serial.SerialCommHandler;
 import Serial.Commands.*;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.FloatProperty;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -32,12 +35,17 @@ public class MainPageController implements Initializable{
 	private ClockModel clock;
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	
-
+    @FXML
+    private Button cancelProecssButton;
+    
     @FXML
     private Label clockLabel;
     
     @FXML
     private Label currentProcessLabel;
+    
+    @FXML
+    private Label currentProductCountLabel;
 
     @FXML
     private TextField enjeksiyonDistanceField;
@@ -73,6 +81,9 @@ public class MainPageController implements Initializable{
     private Button moveKalipMotor;
 
     @FXML
+    private Button pauseProcessButton;
+
+    @FXML
     private ProgressBar processBar;
 
     @FXML
@@ -82,10 +93,51 @@ public class MainPageController implements Initializable{
     private Button processSettingButton;
 
     @FXML
+    private Button resetButton;
+
+    @FXML
+    private Label targetProductCountLabel;
+    
+    @FXML
     private TextArea testField;
     
 
+    // Functions
+    @FXML
+    void cancelProcess(MouseEvent event) {
+    	this.scm.sendString("C");
+    }
+    
+    @FXML
+    void goToProcessPage(MouseEvent event) {
 
+    }
+    
+    @FXML
+    void pauseProject(MouseEvent event) {
+    	// makine durdurulmuşsa devam, 
+    	// durdurulmamışsa durdur komutu dönderiliyor.
+    	
+    	if(this.machine.isPaused == true) {
+    		this.scm.sendString("D");
+    		this.machine.isPaused = false;
+    	}else {
+			this.scm.sendString("W");
+			this.machine.isPaused = true;
+    	}
+    }
+    
+    @FXML
+    void startProcess(MouseEvent event) {
+    	this.scm.sendString("B");
+    }
+    
+    @FXML
+    void resetBoards(MouseEvent event) {
+    	this.scm.sendString("R");
+    }
+    
+    
     
     @FXML
     void enjeksiyonHome(MouseEvent event) {
@@ -96,6 +148,7 @@ public class MainPageController implements Initializable{
     void homeKalipMotor(MouseEvent event) {
     	this.scm.sendString("K0");
     }
+
 
     @FXML
     void moveEnjeksiyonLeft(MouseEvent event) {
@@ -182,10 +235,7 @@ public class MainPageController implements Initializable{
     	
     }
     
-    @FXML
-    void startProcess(MouseEvent event) {
-    	this.scm.sendString("B");
-    }
+
     
     public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
     	this.scm = serialHandler;
@@ -226,6 +276,18 @@ public class MainPageController implements Initializable{
 		FloatProperty nozzleTemp = machine.getNozzleTempProperty();
 		FloatProperty midTemp = machine.getMidTempProperty();
 		FloatProperty backTemp = machine.getBackTempProperty();
+		
+		if(this.machine.getCurrentProcess() == null)
+		{
+			// here there will be a process deserializing codes in the future
+			this.machine.setCurrentProcess(new Process());
+		}
+		else {
+			currentProcessLabel.setText(this.machine.getCurrentProcess().getIsim());
+		}
+		
+		IntegerProperty parcaSayisi = this.machine.getCurrentProcess().getHedefSayiProperty();
+		targetProductCountLabel.textProperty().bind(Bindings.convert(parcaSayisi));
 		
 		ClockModel clock = new ClockModel();
 		
