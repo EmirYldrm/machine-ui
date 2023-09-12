@@ -3,6 +3,7 @@ package Model;
 import Model.Motor.EnjeksiyonMotor;
 import Model.Motor.HelezonMotor;
 import Model.Motor.KalipMotor;
+import Model.States.State;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 
@@ -25,6 +26,8 @@ public class MachineInfo {
 	private KalipMotor kalipMotor;
 	
 	private Process currentProcess;
+	
+	public boolean isPaused = false;
 	
 	
 	public float getNozzleSicaklik() {
