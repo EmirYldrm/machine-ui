@@ -3,6 +3,8 @@ package Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import com.fazecast.jSerialComm.SerialPort;
@@ -66,8 +68,10 @@ public class VideoPageController  implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		file = new File("../KontrolPaneli/src/Assets/icons/vids/akil_intro.mp4");	
-		media = new Media(file.toURI().toString());
+		//file = new File("../KontrolPaneli/src/Assets/icons/vids/akil_intro.mp4");
+		String mediaPath = "/Assets/icons/vids/akil_intro.mp4";
+		//media = new Media(file.toURI().toString());
+		media = new Media(getClass().getResource(mediaPath).toExternalForm());
 		mediaPlayer = new MediaPlayer(media);
 		
 		videoPlayer.setMediaPlayer(mediaPlayer);
@@ -95,9 +99,38 @@ public class VideoPageController  implements Initializable{
 			 	ObjectDeserializer deserializer = new ObjectDeserializer() ;
 			 	
 			 	try {
-			 		
-					Process process = (Process)deserializer.deserializeObject("../KontrolPaneli/src/Assets/icons/vids/process.akl");
+			 		String userDir = System.getProperty("user.dir");
+			        String fileName = "process.akl";
+			        File file = new File(userDir, fileName);
+			        Process process = new Process();
+			        if (file.exists()) {
+			            System.out.println("File already exists in deserring" + userDir);
+			             process = (Process) deserializer.deserializeObject( file.getPath());
+			            
+			        } else {
+			            try {
+			                if (file.createNewFile()) {
+			                    System.out.println("File created successfully in " + userDir);
+
+			                    // Serialize the object to the file
+			                    process = (Process) deserializer.deserializeObject( file.getPath());
+
+			                    // Do other stuff with the newly created file here
+			                } else {
+			                    System.out.println("Failed to create the file.");
+			                }
+			            } catch (IOException e) {
+			                System.out.println("An error occurred while creating the file: " + e.getMessage());
+			            }
+			        }
+			        
+			        // eğer deserialize edilen process null ise 
+			        if(process == null) {
+			        	process = new Process();
+			        }
+			        
 					machine.setCurrentProcess(process);
+					
 					process.setParcaSayisiProperty(new SimpleIntegerProperty());
 					process.setHedefSayiProperty(new SimpleIntegerProperty(process.getHedefSayi()));
 					System.out.println(process.getIsim());

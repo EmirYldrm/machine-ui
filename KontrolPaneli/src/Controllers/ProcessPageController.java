@@ -1,6 +1,7 @@
 
 package Controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -280,9 +281,36 @@ public class ProcessPageController implements Initializable{
     void updateTheProject(MouseEvent event) {
     	machine.setCurrentProcess(process);
     	ObjectSerializer serializer = new ObjectSerializer();
+    	
     	try {
-			serializer.serializeObject("../KontrolPaneli/src/Assets/icons/vids/process.akl", this.process);
+    		String userDir = System.getProperty("user.dir");
+	        String fileName = "process.akl";
+	        File file = new File(userDir, fileName);
+	        Process process = new Process();
+	        
+	        if (file.exists()) {
+	            System.out.println("File already exists in deserring" + userDir);
+	            serializer.serializeObject(file.getPath() ,this.process);
+	            
+	        } else {
+	            try {
+	                if (file.createNewFile()) {
+	                    System.out.println("File created successfully in " + userDir);
+	
+	                    // Serialize the object to the file
+	                    serializer.serializeObject(file.getPath() ,this.process);
+	
+	                    // Do other stuff with the newly created file here
+	                } else {
+	                    System.out.println("Failed to create the file.");
+	                }
+	            } catch (IOException e) {
+	                System.out.println("An error occurred while creating the file: " + e.getMessage());
+	            }
+	        }
+	        
 			System.out.println(process.getParcaDusurmeSayisi());
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
