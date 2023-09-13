@@ -48,7 +48,7 @@
                <graphic>
                   <ImageView fitHeight="42.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(3).png" />
+                        <Image url="@../Assets/icons/vids/download%20(3).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -56,7 +56,7 @@
                <graphic>
                   <ImageView fitHeight="42.0" fitWidth="36.0" onMouseClicked="#homeKalipMotor" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(3).png" />
+                        <Image url="@../Assets/icons/vids/download%20(3).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -64,7 +64,7 @@
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(1).png" />
+                        <Image url="@../Assets/icons/vids/download%20(1).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -72,7 +72,7 @@
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download.png" />
+                        <Image url="@../Assets/icons/vids/download.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -82,7 +82,7 @@
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download.png" />
+                        <Image url="@../Assets/icons/vids/download.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -91,7 +91,7 @@
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(1).png" />
+                        <Image url="@../Assets/icons/vids/download%20(1).png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -140,7 +140,7 @@
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(4).png" />
+                        <Image url="@../Assets/icons/vids/download%20(4).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -167,7 +167,7 @@
                <graphic>
                   <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(6).png" />
+                        <Image url="@../Assets/icons/vids/download%20(6).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -175,7 +175,7 @@
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(5).png" />
+                        <Image url="@../Assets/icons/vids/download%20(5).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -183,7 +183,7 @@
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/Akil/icon/download%20(7).png" />
+                        <Image url="@../Assets/icons/vids/download%20(7).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
