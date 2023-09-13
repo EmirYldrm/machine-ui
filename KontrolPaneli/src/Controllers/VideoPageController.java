@@ -3,8 +3,6 @@ package Controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 import com.fazecast.jSerialComm.SerialPort;
@@ -39,23 +37,19 @@ import Serial.Commands.SetProcessPinLengthCommand;
 import Serial.Commands.SetProcessRateCommand;
 import Serial.Commands.SetProcessVolumeCommand;
 import Serial.Commands.WaitProcessCommand;
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.stage.Stage;
 
 public class VideoPageController  implements Initializable{
 
-	private File file;
 	private Media media;
 	private MediaPlayer mediaPlayer;
 	
@@ -165,6 +159,7 @@ public class VideoPageController  implements Initializable{
 	
 	public SerialCommHandler initSerialComm() {
 		String comPortName = "";
+		String comportDesName = "";
 		CommandHandler comHandler;
 		SerialCommHandler scm;
 		
@@ -178,7 +173,7 @@ public class VideoPageController  implements Initializable{
 				System.out.println(port.getSystemPortName());
 				
 				// Buradaki if ile arduinoya otomatik olarak bağlanabiliyoruz.
-				if(port.getDescriptivePortName().contains("CH340") || port.getDescriptivePortName().contains("Arduino"))
+				if(port.getDescriptivePortName().contains("CH340") || port.getDescriptivePortName().contains("Arduino") || port.getDescriptivePortName().contains("ttyUSB0") || port.getDescriptivePortName().contains("USB"))
 					comPortName = port.getSystemPortName();
 			}
 			
@@ -227,7 +222,7 @@ public class VideoPageController  implements Initializable{
 			 Alert alert = new Alert(Alert.AlertType.ERROR);
 			 alert.setTitle("ERROR!");
 			 alert.setHeaderText("BAĞLANTI SAĞLANAMADI, LÜTFEN RESETLEYİN!!");
-			 alert.setContentText("Resetleme işe yaramıyorsa teknik destek için bize ulaşın.");
+			 alert.setContentText("Resetleme işe yaramıyorsa teknik destek için bize ulaşın. " + comPortName);
 			 alert.showAndWait();
 		}
 		

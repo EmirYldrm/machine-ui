@@ -3,11 +3,12 @@ package Model;
 import java.io.Serializable;
 import java.util.Date;
 
-import Model.Motor.KalipMotor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Process implements Serializable{
+
+
 
 	private String isim;
 	
@@ -17,10 +18,6 @@ public class Process implements Serializable{
 	private transient IntegerProperty parcaSayisiProperty = new SimpleIntegerProperty();
 	private transient IntegerProperty hedefSayiProperty =  new SimpleIntegerProperty();
 	
-
-
-
-
 
 	private int hedefSayi;
 	private int parcaDusurmeSayisi;
