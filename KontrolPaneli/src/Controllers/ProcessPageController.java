@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Model.ConfigHandler;
 import Model.MachineInfo;
 import Model.ObjectSerializer;
 import Model.Process;
@@ -245,13 +246,16 @@ public class ProcessPageController implements Initializable{
     @FXML
     void setProcessVolume(MouseEvent event) {
     	
-    	 
+    	
     	String str = parcaHacimField.getText();
+    	ConfigHandler handler = new ConfigHandler();
     	
     	long max = Long.parseLong(str);
+    	long radiusSquare = handler.getRadiusSquare(); 
+    	long enjLen = max / ((long)(Math.PI * radiusSquare)); // 100
     	
-    	long enjLen = max / ((long)(Math.PI * 156.25));
     	System.out.println(machine.getEnjeksiyonMotor().oneMMStepcount);
+    	
     	SerialCommHandler.getInstance().sendString("PH " + (enjLen * machine.getEnjeksiyonMotor().oneMMStepcount));
     	
     	process.setParcaHacim(enjLen * machine.getEnjeksiyonMotor().oneMMStepcount);
@@ -280,6 +284,8 @@ public class ProcessPageController implements Initializable{
     @FXML
     void updateTheProject(MouseEvent event) {
     	machine.setCurrentProcess(process);
+    	sendCurrentProcess();
+    	
     	ObjectSerializer serializer = new ObjectSerializer();
     	
     	try {
@@ -316,6 +322,22 @@ public class ProcessPageController implements Initializable{
 			e.printStackTrace();
 			System.out.println("serializer sikintisi");
 		}
+    }
+    
+    // Ayarlanan prosesin arduino tarafına gönderilmesi sağlanır.
+    public void sendCurrentProcess() {
+    	SerialCommHandler.getInstance().sendString("PH " + this.process.getParcaHacim() + "\r");
+    
+    	SerialCommHandler.getInstance().sendString("PU " + this.process.getHedefSayi()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PO " + this.process.getEnjeksiyonHelezonFactor()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PS " + this.process.getEnjeksiyonHiz()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PD " + this.process.getDolumHiz()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PP " + this.process.getPinUzunluk()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PF " + this.process.getParcaDusurmeSayisi()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PM " + this.process.getKalipAdim()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PA " + this.process.getBeklemeSuresi()+ "\r");
+    	SerialCommHandler.getInstance().sendString("PX " + this.process.getRetruction()+ "\r");	
+    	return;
     }
     
     

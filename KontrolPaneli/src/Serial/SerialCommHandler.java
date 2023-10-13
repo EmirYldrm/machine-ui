@@ -52,6 +52,8 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 		if(sp.openPort()) {
 			outputStream1 = sp.getOutputStream();
 			input = sp.getInputStream();
+			
+			this.sendString("&");
 			return true;
 		}
 		else {	// port açılmazsa false döndür.
@@ -121,16 +123,24 @@ public class SerialCommHandler  implements SerialPortDataListener, ISerialComm{
 		
 		while (sp.bytesAvailable() > 0)
 		{
-          byte[] readBuffer = new byte[sp.bytesAvailable()];
-          int numRead = sp.readBytes(readBuffer, readBuffer.length);
-          String commands = new String(readBuffer);
-          System.out.println(commands);
-          String[] commandArray = commands.split("\\n");
-          //System.out.println(commandArray[0]);
-          List<String> currentCommandList = Arrays.asList(commandArray);// hata var
-          //System.out.println(currentCommandList);
-          setCommand(commands);
-          this.comHandler.executeCommand(currentCommandList);
+			try {
+			  byte[] readBuffer = new byte[sp.bytesAvailable()];
+			  System.out.println("id : "+readBuffer.hashCode());
+	          int numRead = sp.readBytes(readBuffer, readBuffer.length);
+	          String commands = new String(readBuffer);
+	          System.out.println(commands);
+	          String[] commandArray = commands.split("\\n");
+	          //System.out.println(commandArray[0]);
+	          List<String> currentCommandList = Arrays.asList(commandArray);// hata var
+	          //System.out.println(currentCommandList);
+	          setCommand(commands);
+	          this.comHandler.executeCommand(currentCommandList);
+	          
+	          
+			}catch(IndexOutOfBoundsException e) {
+				System.out.println("buradaymis: " + e.getMessage());
+			}
+         
         }
 		
 	}

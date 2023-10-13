@@ -3,21 +3,28 @@ package Model;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.util.Duration;
 
 
 public class ClockModel {
-
+	
+	
     private StringProperty timeProperty = new SimpleStringProperty();
-    private DateTimeFormatter	 timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     public StringProperty timeProperty() {
         return timeProperty;
     }
+    
+   
 
     public void start() {
+    	       
         Thread clockThread = new Thread(() -> {
             while (true) {
                 LocalTime currentTime = LocalTime.now();

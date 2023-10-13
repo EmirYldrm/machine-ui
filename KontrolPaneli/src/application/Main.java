@@ -56,8 +56,8 @@ public class Main extends Application {
 			 	FXMLLoader videoPageLoader = new FXMLLoader(getClass().getResource("/view/VideoPage.fxml"));
 		        Parent videoPageRoot = videoPageLoader.load();
 		        Scene scene12 = new Scene(videoPageRoot);
-		        primaryStage.initStyle(StageStyle.UNDECORATED);
 		        primaryStage.setScene(scene12);
+		        primaryStage.initStyle(StageStyle.UNDECORATED);
 		        primaryStage.show();
 		        
 			/*// Create a Media object with the path to your video file

@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="800.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
+<Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="800.0" style="-fx-background-color: #1E1E1E;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.MainPageController">
    <children>
-      <AnchorPane layoutX="405.0" layoutY="6.0" prefHeight="430.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
+      <AnchorPane layoutX="405.0" layoutY="6.0" prefHeight="415.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
             <Pane prefHeight="27.0" prefWidth="390.0" style="-fx-background-color: #2d2d30;">
                <children>
@@ -96,9 +96,9 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Pane layoutX="292.0" layoutY="394.0" prefHeight="36.0" prefWidth="98.0" style="-fx-background-color: #1E1E1E;">
+            <Pane layoutX="292.0" layoutY="379.0" prefHeight="36.0" prefWidth="98.0" style="-fx-background-color: #1E1E1E;">
                <children>
-                  <Label fx:id="clockLabel" alignment="CENTER" layoutY="4.0" prefHeight="36.0" prefWidth="98.0" textFill="WHITE">
+                  <Label fx:id="clockLabel" alignment="CENTER" layoutX="-4.0" prefHeight="36.0" prefWidth="98.0" textFill="WHITE">
                      <font>
                         <Font name="Source Code Pro" size="15.0" />
                      </font>
@@ -134,7 +134,7 @@
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="6.0" layoutY="170.0" prefHeight="266.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
+      <AnchorPane layoutX="6.0" layoutY="170.0" prefHeight="251.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
             <Button fx:id="pauseProcessButton" layoutX="118.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#pauseProject" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #e4e44e;" textFill="#e4e44e">
                <graphic>

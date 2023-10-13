@@ -1,20 +1,29 @@
 package Controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.fazecast.jSerialComm.SerialPort;
 
 import Model.ClockModel;
+import Model.ConfigHandler;
 import Model.MachineInfo;
 import Model.Process;
 import Serial.SerialCommHandler;
 import Serial.Commands.*;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.Property;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +31,8 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.util.Duration;
 
 public class MainPageController implements Initializable{
 
@@ -30,6 +41,7 @@ public class MainPageController implements Initializable{
 	private CommandHandler comHandler;
 	private SerialCommHandler scm;
 	private ClockModel clock;
+	private ConfigHandler handler = new ConfigHandler();
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 	
     @FXML
@@ -79,6 +91,9 @@ public class MainPageController implements Initializable{
 
     @FXML
     private Button pauseProcessButton;
+    
+    @FXML
+    private Pane mainPane;
 
     @FXML
     private ProgressBar processBar;
@@ -153,7 +168,7 @@ public class MainPageController implements Initializable{
         try {
         	float distance = Float.parseFloat(str);
         	long stepCount = (long) (machine.getEnjeksiyonMotor().oneMMStepcount * distance);
-        	this.scm.sendString("EE " + -stepCount);
+        	this.scm.sendString("EE " + stepCount);
         	System.out.println(stepCount);
 
         } catch (NumberFormatException ex) {
@@ -174,7 +189,7 @@ public class MainPageController implements Initializable{
         try {
         	float distance = Float.parseFloat(str);
         	long stepCount = (long) (machine.getEnjeksiyonMotor().oneMMStepcount * distance);
-        	this.scm.sendString("EE " + stepCount);
+        	this.scm.sendString("EE " + -stepCount);
         	System.out.println(stepCount);
 
         } catch (NumberFormatException ex) {
@@ -232,7 +247,28 @@ public class MainPageController implements Initializable{
     	
     }
     
-
+    // kullanım limiti güncelleyici
+    public void incrementUsage() {
+    	if(this.handler.getAccessFlag() != 1) {
+		
+	    	long curr = this.handler.getTotalDuration();
+	    	this.handler.setTotalDuration(curr + 1);
+	    	System.out.println("anlık "+ curr);
+	    	
+	    	// eger toplam kullanım limiti aşmışsa password iste.
+	    	if(this.handler.isLimitReached()) {
+	    		FXMLLoader passwordLoader = new FXMLLoader(getClass().getResource("/view/PasswordPage.fxml"));
+		        Parent passwordRoot = null;
+		        try {
+		        	passwordRoot = passwordLoader.load();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        this.mainPane.getChildren().setAll(passwordRoot);
+	    	}
+    	}
+    }
     
     public void setSerialCommunicationHandler(SerialCommHandler serialHandler) {
     	this.scm = serialHandler;
@@ -268,6 +304,8 @@ public class MainPageController implements Initializable{
 		if(scm != null)
 			testField.textProperty().bind(scm.commandProtperty());
 		
+		//scm.sendString("W");
+		//scm.sendString("D");
 		
 		// bind etmek için floatpropery oluşturup lambda fonksiyonu ile bind işlemini gerçekleştiriyoruz.
 		FloatProperty nozzleTemp = machine.getNozzleTempProperty();
@@ -286,15 +324,21 @@ public class MainPageController implements Initializable{
 		IntegerProperty parcaSayisi = this.machine.getCurrentProcess().getHedefSayiProperty();
 		targetProductCountLabel.textProperty().bind(Bindings.convert(parcaSayisi));
 		
+		// Saat başlatılıyor.
 		ClockModel clock = new ClockModel();
 		
 		 Bindings.bindBidirectional(
 	                clockLabel.textProperty(),
-	                clock.timeProperty()
+	               clock.timeProperty()
 	     );
-		
 		clock.start();
 		
+		incrementUsage();
+		//şifre kontroln kısmı
+		Duration duration = Duration.minutes(1);
+        Timeline timeline = new Timeline(new KeyFrame(duration, event -> incrementUsage()));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+		
 	}
-
 }
