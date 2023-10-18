@@ -29,7 +29,7 @@
                   <Font name="Source Code Pro" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="enjeksiyonKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="44.0" prefHeight="36.0" prefWidth="105.0" text="?.??" textFill="WHITE">
+            <Label fx:id="enjeksiyonKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="164.0" layoutY="44.0" prefHeight="36.0" prefWidth="105.0" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Font name="Source Code Pro" size="17.0" />
                </font>
             </Label>
-            <Label fx:id="kalipKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="226.0" prefHeight="36.0" prefWidth="98.0" text="?.??" textFill="WHITE">
+            <Label fx:id="kalipKonumLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="165.0" layoutY="226.0" prefHeight="36.0" prefWidth="98.0" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -76,8 +76,8 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <TextField fx:id="moldDistanceField" alignment="CENTER" layoutX="286.0" layoutY="291.0" prefHeight="25.0" prefWidth="66.0" />
-            <TextField fx:id="enjeksiyonDistanceField" alignment="CENTER" layoutX="288.0" layoutY="111.0" prefHeight="25.0" prefWidth="66.0" />
+            <TextField fx:id="moldDistanceField" alignment="CENTER" layoutX="286.0" layoutY="290.0" prefHeight="30.0" prefWidth="66.0" />
+            <TextField fx:id="enjeksiyonDistanceField" alignment="CENTER" layoutX="288.0" layoutY="109.0" prefHeight="30.0" prefWidth="66.0" />
             <Button fx:id="enjeksiyonLeftButton" layoutX="46.0" layoutY="101.0" mnemonicParsing="false" onMouseClicked="#moveEnjeksiyonLeft" prefHeight="36.0" prefWidth="52.0" style="-fx-background-color: #DBE2EF;">
                <graphic>
                   <ImageView fitHeight="36.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
@@ -136,7 +136,7 @@
       </AnchorPane>
       <AnchorPane layoutX="6.0" layoutY="170.0" prefHeight="251.0" prefWidth="390.0" style="-fx-background-color: #3e3e42;">
          <children>
-            <Button fx:id="pauseProcessButton" layoutX="118.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#pauseProject" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #e4e44e;" textFill="#e4e44e">
+            <Button fx:id="pauseProcessButton" layoutX="161.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#pauseProject" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #fcfc57;" stylesheets="@../application/application.css" textFill="#fcfc57">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -171,19 +171,11 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="cancelProecssButton" layoutX="219.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#cancelProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #ee3434;" textFill="#ee3434">
+            <Button fx:id="cancelProecssButton" layoutX="304.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#cancelProcess" prefHeight="36.0" prefWidth="66.0" style="-fx-background-color: #ee3434;" textFill="#ee3434">
                <graphic>
                   <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../Assets/icons/vids/download%20(5).png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button fx:id="processSettingButton" layoutX="310.0" layoutY="192.0" mnemonicParsing="false" onMouseClicked="#goToProcessPage" prefHeight="44.0" prefWidth="66.0" style="-fx-background-color: #DBE2EF;">
-               <graphic>
-                  <ImageView fitHeight="44.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../Assets/icons/vids/download%20(7).png" />
                      </image>
                   </ImageView>
                </graphic></Button>
