@@ -28,6 +28,7 @@ public class MachineInfo {
 	private Process currentProcess;
 	
 	public boolean isPaused = false;
+	public boolean isBegin = false;
 	
 	
 	public float getNozzleSicaklik() {
