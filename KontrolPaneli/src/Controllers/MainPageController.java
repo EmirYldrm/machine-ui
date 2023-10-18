@@ -294,6 +294,12 @@ public class MainPageController implements Initializable{
 		FloatProperty backTemp = machine.getBackTempProperty();
     }
     
+    
+    // side bar'dan çağırılacak fonksiyon.
+    public void setPageVisibility(boolean visible) {
+        this.mainPane.setVisible(visible);
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

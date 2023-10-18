@@ -19,6 +19,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class ProcessPageController implements Initializable{
 
@@ -113,6 +114,9 @@ public class ProcessPageController implements Initializable{
 
     @FXML
     private Button processFieldButton;
+    
+    @FXML
+    private Pane processPane;
 
     @FXML
     private TextField processNameField;
@@ -357,6 +361,11 @@ public class ProcessPageController implements Initializable{
     	
     }
 
+    // 	side bar'dan çağırılacak fonksiyon.
+    public void setPageVisibility(boolean visible) {
+        this.processPane.setVisible(visible);
+    }
+    
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// Controller için lazım olan değişkenler 

@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 public class SideBarController implements Initializable{
@@ -24,6 +25,12 @@ public class SideBarController implements Initializable{
 	MachineInfo machine;
 	private CommandHandler comHandler;
 	private SerialCommHandler scm;
+	
+    private FXMLLoader mainLoader;
+    private MainPageController mainPageController;
+
+    private FXMLLoader processLoader;
+    private ProcessPageController processPageController;
 /////////////////////////////////////////////////////
     @FXML
     private StackPane stackPane;
@@ -51,13 +58,15 @@ public class SideBarController implements Initializable{
 
     @FXML
     void mainPage(MouseEvent event) {
-		loadPage("/view/MainPage.fxml");
+    	 mainPageController.setPageVisibility(true);
+         processPageController.setPageVisibility(false);
 
     }
 
     @FXML
     void processPage(MouseEvent event) {
-    	loadPage("/view/ProcessPage.fxml");
+    	processPageController.setPageVisibility(true);
+    	mainPageController.setPageVisibility(false);
     }
     
     void loadPage(String page) {
@@ -144,7 +153,25 @@ public class SideBarController implements Initializable{
 //		// thread içeriinde çağırılacak comhandler ekleniyor.
 //		scm.setComHandler(comHandler);
 		
-		loadPage("/view/MainPage.fxml");
-	}
+		 mainLoader = new FXMLLoader(getClass().getResource("/view/MainPage.fxml"));
+		 processLoader = new FXMLLoader(getClass().getResource("/view/ProcessPage.fxml"));
 
+		 try {
+	            Pane mainPane = mainLoader.load();
+	            stackPane.getChildren().add(mainPane);
+	            mainPageController = mainLoader.getController();
+	
+	            Pane processPane = processLoader.load();
+	            stackPane.getChildren().add(processPane);
+	            processPageController = processLoader.getController();
+	
+	            // Hide other pages or set initial visibility here
+	            mainPane.setVisible(true);
+	            processPane.setVisible(false);
+	
+	        } catch (IOException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	
 }
