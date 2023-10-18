@@ -178,7 +178,7 @@ public class VideoPageController  implements Initializable{
 				System.out.println("sys name: " + port.getSystemPortName());
 				System.out.println("desname: " + port.getDescriptivePortName() + "\n");
 				// Buradaki if ile arduinoya otomatik olarak bağlanabiliyoruz.
-				if(port.getDescriptivePortName().contains("CH340") || port.getDescriptivePortName().contains("Arduino")  || port.getDescriptivePortName().contains("acm")|| port.getDescriptivePortName().contains("USB2.0"))
+				if(port.getDescriptivePortName().contains("CH340") || port.getDescriptivePortName().contains("Arduino")  || port.getDescriptivePortName().contains("acm")|| port.getDescriptivePortName().contains("USB2.0") || port.getDescriptivePortName().contains("CP210"))
 					comPortName = port.getSystemPortName();
 			}
 			
