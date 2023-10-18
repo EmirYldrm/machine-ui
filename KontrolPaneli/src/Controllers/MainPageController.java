@@ -132,16 +132,31 @@ public class MainPageController implements Initializable{
     	
     	if(this.machine.isPaused == true) {
     		this.scm.sendString("D");
+    		
     		this.machine.isPaused = false;
+    		this.pauseProcessButton.setStyle("-fx-background-color:  #fcfc57 ; -fx-text-fill: white;");
     	}else {
 			this.scm.sendString("W");
 			this.machine.isPaused = true;
+			
+			this.pauseProcessButton.setStyle("-fx-background-color: #d31c1c ; -fx-text-fill: white;"); 
+
     	}
     }
     
     @FXML
     void startProcess(MouseEvent event) {
-    	this.scm.sendString("B");
+    	// makine üretime başlamadıysa başla komutu gönder 
+    	if(MachineInfo.getInstance().isBegin == false) {
+    		this.scm.sendString("B");
+    		MachineInfo.getInstance().isBegin = true;
+    	}
+    	else {
+    		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Uyarı");
+            alert.setHeaderText("Üretim devam etmektedir.");
+            alert.showAndWait();
+    	}
     }
     
     @FXML
