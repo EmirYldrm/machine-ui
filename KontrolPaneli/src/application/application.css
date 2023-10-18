@@ -1,1 +1,13 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.button {
+    -fx-background-color:  #c3bebe; /* Default background color */
+}
+
+.button:pressed {
+    -fx-background-color:  #3e3e42; /* Background color when clicked */
+}
+
+/* Change the image when clicked */
+.button:pressed .image {
+    -fx-image: url('/KontrolPaneli/src/Assets/icons/vids/download (6).png');
+}

@@ -56,6 +56,7 @@ public class Main extends Application {
 			 	FXMLLoader videoPageLoader = new FXMLLoader(getClass().getResource("/view/VideoPage.fxml"));
 		        Parent videoPageRoot = videoPageLoader.load();
 		        Scene scene12 = new Scene(videoPageRoot);
+		        scene12.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		        primaryStage.setScene(scene12);
 		        primaryStage.initStyle(StageStyle.UNDECORATED);
 		        primaryStage.show();
